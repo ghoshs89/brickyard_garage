@@ -1,0 +1,54 @@
+{
+ "id": "b3-12",
+ "kind": "STORY",
+ "bay": 3,
+ "index": 42,
+ "title": "Lab Clean-Up",
+ "difficulty": "CHALLENGE",
+ "moves": 14,
+ "colors": 5,
+ "seed": 2554,
+ "baseCoins": 10,
+ "layout": [
+  "...~~...",
+  "~......~",
+  ".~....~.",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........"
+ ],
+ "floor": [
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "rrrrrrrr",
+  "rrrrrrrr",
+  "rrrrrrrr"
+ ],
+ "overlay": [
+  "........",
+  "........",
+  "........",
+  "..2222..",
+  "..2222..",
+  "........",
+  "........",
+  "........"
+ ],
+ "goals": [
+  {
+   "type": "OIL"
+  },
+  {
+   "type": "RUST"
+  },
+  {
+   "type": "CLAMP"
+  }
+ ],
+ "boNote": "Clamps in the middle, rust at the bottom. A Sprayer here saves a lot of moves. Look for five."
+}

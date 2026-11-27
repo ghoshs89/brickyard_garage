@@ -1,0 +1,44 @@
+{
+ "id": "gear-07",
+ "index": 7,
+ "bay": 3,
+ "title": "Diagonal Teeth",
+ "prompt": "Gears can mesh on a slant too. Reach the dyno roller.",
+ "lesson": "Gears mesh when their centres are exactly the sum of their sizes apart, even on a diagonal (3 across, 4 up makes 5).",
+ "boNote": "Straight lines aren't the only lines. Try a slant.",
+ "w": 18,
+ "h": 12,
+ "fixed": [
+  {
+   "x": 3,
+   "y": 3,
+   "teeth": 16,
+   "role": "motor",
+   "label": "Motor"
+  },
+  {
+   "x": 14,
+   "y": 10,
+   "teeth": 16,
+   "role": "output",
+   "label": "Dyno roller"
+  }
+ ],
+ "tray": [
+  2,
+  2,
+  2
+ ],
+ "maxPlace": 3,
+ "belts": [],
+ "blocked": [
+  [
+   5,
+   0,
+   18,
+   4
+  ]
+ ],
+ "rewardCoins": 15,
+  "witness": [[10, 10, 16], [6, 7, 24]]
+}

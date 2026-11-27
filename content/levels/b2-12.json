@@ -1,0 +1,85 @@
+{
+ "id": "b2-12",
+ "kind": "STORY",
+ "bay": 2,
+ "index": 27,
+ "title": "Oily Conveyor",
+ "difficulty": "CHALLENGE",
+ "moves": 17,
+ "colors": 5,
+ "seed": 1999,
+ "baseCoins": 10,
+ "layout": [
+  "~......~",
+  ".~....~.",
+  "........",
+  ".~......",
+  "......~.",
+  "........",
+  ".~....~.",
+  "~......~"
+ ],
+ "conveyors": [
+  [
+   [
+    2,
+    2
+   ],
+   [
+    2,
+    3
+   ],
+   [
+    2,
+    4
+   ],
+   [
+    2,
+    5
+   ],
+   [
+    3,
+    5
+   ],
+   [
+    4,
+    5
+   ],
+   [
+    5,
+    5
+   ],
+   [
+    5,
+    4
+   ],
+   [
+    5,
+    3
+   ],
+   [
+    5,
+    2
+   ],
+   [
+    4,
+    2
+   ],
+   [
+    3,
+    2
+   ]
+  ]
+ ],
+ "goals": [
+  {
+   "type": "OIL"
+  },
+  {
+   "type": "COLOR",
+   "color": "ORANGE",
+   "count": 85
+  }
+ ],
+ "boNote": "The line carries the oil around. Wait for a spill to ride next to a good match, then strike."
+}

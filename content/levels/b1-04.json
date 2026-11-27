@@ -1,0 +1,35 @@
+{
+ "id": "b1-04",
+ "kind": "STORY",
+ "bay": 1,
+ "index": 4,
+ "title": "Airbag Check",
+ "difficulty": "WARMUP",
+ "moves": 14,
+ "colors": 5,
+ "seed": 1148,
+ "baseCoins": 10,
+ "layout": [
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........"
+ ],
+ "goals": [
+  {
+   "type": "COLOR",
+   "color": "RED",
+   "count": 50
+  },
+  {
+   "type": "COLOR",
+   "color": "ORANGE",
+   "count": 50
+  }
+ ],
+ "tutorial": "Match in an L or T shape to build a Shockwave Airbag. Boom!"
+}

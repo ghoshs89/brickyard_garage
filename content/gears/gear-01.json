@@ -1,0 +1,38 @@
+{
+ "id": "gear-01",
+ "index": 1,
+ "bay": 1,
+ "title": "First Gear",
+ "prompt": "Make the lift wheel turn the SAME way as the motor.",
+ "lesson": "Gears that touch turn opposite ways. One gear in between makes the wheel match the motor.",
+ "boNote": "Every machine in this garage starts with one gear touching another.",
+ "w": 18,
+ "h": 10,
+ "fixed": [
+  {
+   "x": 3,
+   "y": 5,
+   "teeth": 16,
+   "role": "motor",
+   "label": "Motor"
+  },
+  {
+   "x": 11,
+   "y": 5,
+   "teeth": 16,
+   "role": "output",
+   "wantDir": "CW",
+   "label": "Lift wheel"
+  }
+ ],
+ "tray": [
+  2,
+  1,
+  0
+ ],
+ "maxPlace": 2,
+ "belts": [],
+ "blocked": [],
+ "rewardCoins": 15,
+ "witness": [[7, 5, 16]]
+}

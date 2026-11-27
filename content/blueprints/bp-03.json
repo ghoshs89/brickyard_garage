@@ -1,0 +1,22 @@
+{
+  "id": "bp-03",
+  "kind": "BLUEPRINT",
+  "index": 3,
+  "title": "Clamp Puzzle",
+  "moves": 3,
+  "exactMoves": 3,
+  "colors": 4,
+  "seed": 1,
+  "baseCoins": 0,
+  "boNote": "Clamped pieces can't move, but they can still match.",
+  "tutorial": "Bring the pieces to the clamps.",
+  "layout": ["YBBRGY", "GYRRBY", "BYGBRG", "RGRBGR", "RGGYYR", "YRGYBB"],
+  "floor": ["......", "......", "......", "......", "......", "......"],
+  "overlay": ["......", "......", ".1...1", "..1...", ".....1", "......"],
+  "refills": ["RGRYGBBRGBGYRY", "RYBGYRRGGGRGBY", "YRBYGYGRBRYGBR", "YYRGGGYYYGYGYG", "YGRRGGRRBYBYGY", "GYRRRGRGGRYYGG"],
+  "goals": [{
+      "type": "CLAMP"
+    }],
+  "witness": [[0, 9, 10, -1], [0, 18, 19, -1], [0, 26, 27, -1]],
+  "forgeStats": "first moves that win 2/6, noisy play wins 4%"
+}

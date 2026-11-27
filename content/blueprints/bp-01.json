@@ -1,0 +1,22 @@
+{
+  "id": "bp-01",
+  "kind": "BLUEPRINT",
+  "index": 1,
+  "title": "Two-Step Crates",
+  "moves": 2,
+  "exactMoves": 2,
+  "colors": 4,
+  "seed": 10,
+  "baseCoins": 0,
+  "boNote": "Two moves, three crates. Look before you swipe.",
+  "tutorial": "The first move can set up the second.",
+  "layout": ["RYRYRB", "BBGRBB", "BG1BGG", "1RYGGB", "BRRYRG", "GY1BRY"],
+  "floor": ["......", "......", "......", "......", "......", "......"],
+  "overlay": ["......", "......", "......", "......", "......", "......"],
+  "refills": ["YYBGBRBYBGBGRB", "YRYBYGRRGYYGGG", "BRRYRGYYGGBRRB", "BBYRYGGBGBGRBY", "RBYYGGRGRYYYYB", "YYGRRGGBGYGBYG"],
+  "goals": [{
+      "type": "CRATE"
+    }],
+  "witness": [[0, 15, 21, -1], [0, 27, 28, -1]],
+  "forgeStats": "first moves that win 1/8, noisy play wins 17%"
+}

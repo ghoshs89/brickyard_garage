@@ -1,0 +1,30 @@
+{
+ "id": "b1-03",
+ "kind": "STORY",
+ "bay": 1,
+ "index": 3,
+ "title": "Buggy Bay",
+ "difficulty": "WARMUP",
+ "moves": 21,
+ "colors": 5,
+ "seed": 1111,
+ "baseCoins": 10,
+ "layout": [
+  "#......#",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "#......#"
+ ],
+ "goals": [
+  {
+   "type": "COLOR",
+   "color": "GREEN",
+   "count": 60
+  }
+ ],
+ "tutorial": "Make a 2x2 square for an RC Brick Buggy. It drives itself to a goal!"
+}

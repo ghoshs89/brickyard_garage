@@ -1,0 +1,1201 @@
+{
+ "bays": [
+  {
+   "id": "bay1",
+   "name": "Classic Pit Bay",
+   "vehicle": "comet",
+   "intro": "Grandpa Bo's old pit bay. Dusty, quiet, and full of good ideas.",
+   "outro": "The Comet sits on the lift, gleaming. Bay 1 is back in business!",
+   "repairs": [
+    {
+     "id": "b1-r1",
+     "name": "Sweep out the pit bay",
+     "stars": 1,
+     "unlocksSlot": "CHASSIS,WHEELS",
+     "desc": "Clear the dust and roll the Comet's chassis onto the lift.",
+     "story": "Under the dust sheet: a brick rally chassis. Bo smiles. \"I started her in '78. Never finished.\""
+    },
+    {
+     "id": "b1-r2",
+     "name": "Fix the hydraulic lift",
+     "stars": 2,
+     "unlocksSlot": "ENGINE",
+     "desc": "Get the lift pumping so we can fit an engine.",
+     "story": "Juno wants to bash the pump. Bo listens to it first. \"Hear that hiss? A loose valve, not a broken pump.\""
+    },
+    {
+     "id": "b1-r3",
+     "name": "Rebuild the paint booth",
+     "stars": 3,
+     "unlocksSlot": "COLOR",
+     "desc": "A clean booth means a clean coat of bricks.",
+     "story": "Sprocket trots past with a golden 2x4 brick in his mouth. Again."
+    },
+    {
+     "id": "b1-r4",
+     "name": "Hang the tool wall",
+     "stars": 4,
+     "unlocksSlot": "AERO",
+     "desc": "Every tool in its place, every spoiler within reach.",
+     "story": "\"Measure twice, snap once,\" says Bo. Juno groans, then measures twice."
+    },
+    {
+     "id": "b1-r5",
+     "name": "Raise the bay door and light the sign",
+     "stars": 5,
+     "unlocksSlot": "UTILITY",
+     "desc": "Open the big door and switch on the neon BRICKYARD sign.",
+     "story": "The sign flickers on. People across the street stop and look."
+    }
+   ],
+   "fixtures": [
+    {
+     "id": "b1-floor",
+     "name": "Floor",
+     "repair": "b1-r1",
+     "designs": [
+      {
+       "id": "b1-floor-0",
+       "name": "Oil-Stained Concrete",
+       "price": 0
+      },
+      {
+       "id": "b1-floor-1",
+       "name": "Checkered Tiles",
+       "price": 20
+      },
+      {
+       "id": "b1-floor-2",
+       "name": "Studded Baseplate Floor",
+       "price": 40
+      }
+     ]
+    },
+    {
+     "id": "b1-bench",
+     "name": "Workbench",
+     "repair": "b1-r2",
+     "designs": [
+      {
+       "id": "b1-bench-0",
+       "name": "Old Oak Bench",
+       "price": 0
+      },
+      {
+       "id": "b1-bench-1",
+       "name": "Red Steel Bench",
+       "price": 22
+      },
+      {
+       "id": "b1-bench-2",
+       "name": "Brick-Built Bench",
+       "price": 45
+      }
+     ]
+    },
+    {
+     "id": "b1-wall",
+     "name": "Tool Wall",
+     "repair": "b1-r4",
+     "designs": [
+      {
+       "id": "b1-wall-0",
+       "name": "Pegboard",
+       "price": 0
+      },
+      {
+       "id": "b1-wall-1",
+       "name": "Rolling Tool Chest",
+       "price": 22
+      },
+      {
+       "id": "b1-wall-2",
+       "name": "Magnet Rail",
+       "price": 45
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "bay2",
+   "name": "Off-Road & Rescue Rig Bay",
+   "vehicle": "trailblazer",
+   "intro": "The heavy bay. Mud on the floor, a crane in the roof, and a big job ahead.",
+   "outro": "The Trailblazer rumbles off the ramp, ready for any hill.",
+   "repairs": [
+    {
+     "id": "b2-r1",
+     "name": "Dig out the heavy bay",
+     "stars": 1,
+     "unlocksSlot": "CHASSIS,WHEELS",
+     "desc": "Shovel the mud and find the crawler chassis.",
+     "story": "Bo tells a long story about a rally in the rain. Juno almost leaves. Then he says: \"...so we let the tyres down a little for grip.\""
+    },
+    {
+     "id": "b2-r2",
+     "name": "Restart the winch crane",
+     "stars": 2,
+     "unlocksSlot": "ENGINE",
+     "desc": "Lift a big engine into the Trailblazer.",
+     "story": "The crane hook is stuck. Sprocket is sitting on the lever. Of course."
+    },
+    {
+     "id": "b2-r3",
+     "name": "Repaint the rescue stripes",
+     "stars": 3,
+     "unlocksSlot": "COLOR",
+     "desc": "Bright stripes so everyone can see the rescue rig.",
+     "story": "Juno paints fast. Bo paints slow. Bo's stripes are straighter. Juno notices."
+    },
+    {
+     "id": "b2-r4",
+     "name": "Patch the roof skylights",
+     "stars": 4,
+     "unlocksSlot": "AERO",
+     "desc": "Let the light in and keep the rain out.",
+     "story": "\"Some jobs you can't rush,\" says Bo, holding the ladder. \"Glass is one of them.\""
+    },
+    {
+     "id": "b2-r5",
+     "name": "Fire up the floodlight tower",
+     "stars": 5,
+     "unlocksSlot": "UTILITY",
+     "desc": "Light the yard for night rescues.",
+     "story": "The floodlights snap on. The whole yard glows like a stadium."
+    }
+   ],
+   "fixtures": [
+    {
+     "id": "b2-lift",
+     "name": "Vehicle Lift",
+     "repair": "b2-r1",
+     "designs": [
+      {
+       "id": "b2-lift-0",
+       "name": "Two-Post Lift",
+       "price": 0
+      },
+      {
+       "id": "b2-lift-1",
+       "name": "Scissor Lift",
+       "price": 22
+      },
+      {
+       "id": "b2-lift-2",
+       "name": "Rescue Ramp",
+       "price": 50
+      }
+     ]
+    },
+    {
+     "id": "b2-crane",
+     "name": "Crane",
+     "repair": "b2-r2",
+     "designs": [
+      {
+       "id": "b2-crane-0",
+       "name": "Hand Winch",
+       "price": 0
+      },
+      {
+       "id": "b2-crane-1",
+       "name": "Yellow Gantry",
+       "price": 24
+      },
+      {
+       "id": "b2-crane-2",
+       "name": "Brick Crane",
+       "price": 50
+      }
+     ]
+    },
+    {
+     "id": "b2-shelves",
+     "name": "Parts Shelves",
+     "repair": "b2-r4",
+     "designs": [
+      {
+       "id": "b2-shelves-0",
+       "name": "Wooden Crates",
+       "price": 0
+      },
+      {
+       "id": "b2-shelves-1",
+       "name": "Wire Racks",
+       "price": 20
+      },
+      {
+       "id": "b2-shelves-2",
+       "name": "Stacked Brick Bins",
+       "price": 45
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "bay3",
+   "name": "Aero Prototype Lab",
+   "vehicle": "apex",
+   "intro": "Bo's secret lab. A wind tunnel, a dyno, and a covered shape on a stand.",
+   "outro": "The Apex rolls onto the Car Show stage. The crowd goes quiet, then cheers.",
+   "repairs": [
+    {
+     "id": "b3-r1",
+     "name": "Dust off the wind tunnel",
+     "stars": 1,
+     "unlocksSlot": "CHASSIS,WHEELS",
+     "desc": "Uncover the hypercar prototype.",
+     "story": "Under the cover: the Apex. Bo's best design, never built. \"I needed someone fast with ideas,\" he says, \"and someone slow with checks.\""
+    },
+    {
+     "id": "b3-r2",
+     "name": "Rewire the dyno",
+     "stars": 2,
+     "unlocksSlot": "ENGINE",
+     "desc": "Test engines on the rolling road.",
+     "story": "Juno spots a crossed wire Bo missed. Bo grins. \"Fast eyes. Good.\""
+    },
+    {
+     "id": "b3-r3",
+     "name": "Seal the clean-room paint bay",
+     "stars": 3,
+     "unlocksSlot": "COLOR",
+     "desc": "Dust-free paint for a perfect finish.",
+     "story": "Sprocket is banned from the clean room. He watches through the window, very sad."
+    },
+    {
+     "id": "b3-r4",
+     "name": "Spin up the big tunnel fan",
+     "stars": 4,
+     "unlocksSlot": "AERO",
+     "desc": "Test wings and nose cones in real wind.",
+     "story": "Smoke streams over the Apex. \"See where it swirls?\" says Bo. \"That's drag. Fix that, win races.\""
+    },
+    {
+     "id": "b3-r5",
+     "name": "Light the Car Show stage",
+     "stars": 5,
+     "unlocksSlot": "UTILITY",
+     "desc": "Build the stage for the town Car Show.",
+     "story": "Show night. Three cars, one team, and a very proud dog."
+    }
+   ],
+   "fixtures": [
+    {
+     "id": "b3-fan",
+     "name": "Tunnel Fan",
+     "repair": "b3-r1",
+     "designs": [
+      {
+       "id": "b3-fan-0",
+       "name": "Two-Blade Fan",
+       "price": 0
+      },
+      {
+       "id": "b3-fan-1",
+       "name": "Three-Blade Fan",
+       "price": 22
+      },
+      {
+       "id": "b3-fan-2",
+       "name": "Turbo Ring Fan",
+       "price": 50
+      }
+     ]
+    },
+    {
+     "id": "b3-dyno",
+     "name": "Dyno Rollers",
+     "repair": "b3-r2",
+     "designs": [
+      {
+       "id": "b3-dyno-0",
+       "name": "Steel Rollers",
+       "price": 0
+      },
+      {
+       "id": "b3-dyno-1",
+       "name": "Striped Rollers",
+       "price": 24
+      },
+      {
+       "id": "b3-dyno-2",
+       "name": "Glow Rollers",
+       "price": 50
+      }
+     ]
+    },
+    {
+     "id": "b3-stand",
+     "name": "Showcase Plinth",
+     "repair": "b3-r3",
+     "designs": [
+      {
+       "id": "b3-stand-0",
+       "name": "Brick Plinth",
+       "price": 0
+      },
+      {
+       "id": "b3-stand-1",
+       "name": "Turntable",
+       "price": 22
+      },
+      {
+       "id": "b3-stand-2",
+       "name": "Spotlight Stage",
+       "price": 50
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "vehicles": [
+  {
+   "id": "comet",
+   "name": "The Comet",
+   "nickname": "Brick Rally Coupe",
+   "bay": "bay1",
+   "speed": 3,
+   "grip": 3,
+   "boost": 2
+  },
+  {
+   "id": "trailblazer",
+   "name": "The Trailblazer",
+   "nickname": "4x4 Off-Road Brick Crawler",
+   "bay": "bay2",
+   "speed": 2,
+   "grip": 4,
+   "boost": 3
+  },
+  {
+   "id": "apex",
+   "name": "The Apex",
+   "nickname": "Hypercar Prototype",
+   "bay": "bay3",
+   "speed": 4,
+   "grip": 2,
+   "boost": 3
+  }
+ ],
+ "parts": [
+  {
+   "id": "comet-chassis-0",
+   "name": "Rally Frame",
+   "slot": "CHASSIS",
+   "vehicle": "comet",
+   "price": 0,
+   "speed": 1,
+   "grip": 1,
+   "boost": 0,
+   "source": "starter",
+   "starter": true,
+   "blurb": "The frame everything snaps onto."
+  },
+  {
+   "id": "comet-chassis-1",
+   "name": "Lightweight Frame",
+   "slot": "CHASSIS",
+   "vehicle": "comet",
+   "price": 14,
+   "speed": 2,
+   "grip": 0,
+   "boost": 0,
+   "source": "shop",
+   "starter": false,
+   "blurb": "The frame everything snaps onto."
+  },
+  {
+   "id": "comet-chassis-2",
+   "name": "Rally Roll Cage",
+   "slot": "CHASSIS",
+   "vehicle": "comet",
+   "price": 34,
+   "speed": 1,
+   "grip": 2,
+   "boost": 1,
+   "source": "shop",
+   "starter": false,
+   "blurb": "The frame everything snaps onto."
+  },
+  {
+   "id": "comet-wheels-0",
+   "name": "Street Wheels",
+   "slot": "WHEELS",
+   "vehicle": "comet",
+   "price": 0,
+   "speed": 0,
+   "grip": 1,
+   "boost": 0,
+   "source": "starter",
+   "starter": true,
+   "blurb": "Grip for mud, speed for straights."
+  },
+  {
+   "id": "comet-wheels-1",
+   "name": "Gravel Tyres",
+   "slot": "WHEELS",
+   "vehicle": "comet",
+   "price": 12,
+   "speed": 0,
+   "grip": 2,
+   "boost": 0,
+   "source": "shop",
+   "starter": false,
+   "blurb": "Grip for mud, speed for straights."
+  },
+  {
+   "id": "comet-wheels-2",
+   "name": "Slick Racers",
+   "slot": "WHEELS",
+   "vehicle": "comet",
+   "price": 30,
+   "speed": 2,
+   "grip": 1,
+   "boost": 0,
+   "source": "shop",
+   "starter": false,
+   "blurb": "Grip for mud, speed for straights."
+  },
+  {
+   "id": "comet-engine-0",
+   "name": "Flat-Four Engine",
+   "slot": "ENGINE",
+   "vehicle": "comet",
+   "price": 0,
+   "speed": 1,
+   "grip": 0,
+   "boost": 1,
+   "source": "starter",
+   "starter": true,
+   "blurb": "More power for ramps and hills."
+  },
+  {
+   "id": "comet-engine-1",
+   "name": "Twin-Turbo Engine",
+   "slot": "ENGINE",
+   "vehicle": "comet",
+   "price": 18,
+   "speed": 2,
+   "grip": 0,
+   "boost": 2,
+   "source": "shop",
+   "starter": false,
+   "blurb": "More power for ramps and hills."
+  },
+  {
+   "id": "comet-engine-2",
+   "name": "Golden Piston V6",
+   "slot": "ENGINE",
+   "vehicle": "comet",
+   "price": 0,
+   "speed": 2,
+   "grip": 0,
+   "boost": 3,
+   "source": "blueprint",
+   "starter": false,
+   "blurb": "More power for ramps and hills."
+  },
+  {
+   "id": "comet-aero-0",
+   "name": "Short Spoiler",
+   "slot": "AERO",
+   "vehicle": "comet",
+   "price": 0,
+   "speed": 0,
+   "grip": 1,
+   "boost": 0,
+   "source": "starter",
+   "starter": true,
+   "blurb": "Air pushes the car down so it grips."
+  },
+  {
+   "id": "comet-aero-1",
+   "name": "Rally Spoiler",
+   "slot": "AERO",
+   "vehicle": "comet",
+   "price": 12,
+   "speed": 1,
+   "grip": 1,
+   "boost": 0,
+   "source": "shop",
+   "starter": false,
+   "blurb": "Air pushes the car down so it grips."
+  },
+  {
+   "id": "comet-aero-2",
+   "name": "Swan-Neck Wing",
+   "slot": "AERO",
+   "vehicle": "comet",
+   "price": 30,
+   "speed": 1,
+   "grip": 2,
+   "boost": 1,
+   "source": "shop",
+   "starter": false,
+   "blurb": "Air pushes the car down so it grips."
+  },
+  {
+   "id": "comet-utility-0",
+   "name": "Fog Lamps",
+   "slot": "UTILITY",
+   "vehicle": "comet",
+   "price": 0,
+   "speed": 0,
+   "grip": 0,
+   "boost": 1,
+   "source": "starter",
+   "starter": true,
+   "blurb": "Handy extras for big jobs."
+  },
+  {
+   "id": "comet-utility-1",
+   "name": "Roof Light Bar",
+   "slot": "UTILITY",
+   "vehicle": "comet",
+   "price": 12,
+   "speed": 0,
+   "grip": 1,
+   "boost": 1,
+   "source": "shop",
+   "starter": false,
+   "blurb": "Handy extras for big jobs."
+  },
+  {
+   "id": "comet-utility-2",
+   "name": "Nitro Bottles",
+   "slot": "UTILITY",
+   "vehicle": "comet",
+   "price": 0,
+   "speed": 1,
+   "grip": 0,
+   "boost": 2,
+   "source": "gear",
+   "starter": false,
+   "blurb": "Handy extras for big jobs."
+  },
+  {
+   "id": "comet-color-0",
+   "name": "Rally Red",
+   "slot": "COLOR",
+   "vehicle": "comet",
+   "price": 0,
+   "speed": 0,
+   "grip": 0,
+   "boost": 0,
+   "source": "starter",
+   "starter": true,
+   "blurb": "A fresh coat of bricks."
+  },
+  {
+   "id": "comet-color-1",
+   "name": "Ocean Blue",
+   "slot": "COLOR",
+   "vehicle": "comet",
+   "price": 12,
+   "speed": 0,
+   "grip": 0,
+   "boost": 0,
+   "source": "shop",
+   "starter": false,
+   "blurb": "A fresh coat of bricks."
+  },
+  {
+   "id": "comet-color-2",
+   "name": "Gold Stud",
+   "slot": "COLOR",
+   "vehicle": "comet",
+   "price": 28,
+   "speed": 0,
+   "grip": 0,
+   "boost": 0,
+   "source": "shop",
+   "starter": false,
+   "blurb": "A fresh coat of bricks."
+  },
+  {
+   "id": "trailblazer-chassis-0",
+   "name": "Ladder Frame",
+   "slot": "CHASSIS",
+   "vehicle": "trailblazer",
+   "price": 0,
+   "speed": 0,
+   "grip": 1,
+   "boost": 1,
+   "source": "starter",
+   "starter": true,
+   "blurb": "The frame everything snaps onto."
+  },
+  {
+   "id": "trailblazer-chassis-1",
+   "name": "Lifted Frame",
+   "slot": "CHASSIS",
+   "vehicle": "trailblazer",
+   "price": 14,
+   "speed": 0,
+   "grip": 2,
+   "boost": 0,
+   "source": "shop",
+   "starter": false,
+   "blurb": "The frame everything snaps onto."
+  },
+  {
+   "id": "trailblazer-chassis-2",
+   "name": "Rescue Cage",
+   "slot": "CHASSIS",
+   "vehicle": "trailblazer",
+   "price": 34,
+   "speed": 1,
+   "grip": 2,
+   "boost": 1,
+   "source": "shop",
+   "starter": false,
+   "blurb": "The frame everything snaps onto."
+  },
+  {
+   "id": "trailblazer-wheels-0",
+   "name": "All-Terrain Tyres",
+   "slot": "WHEELS",
+   "vehicle": "trailblazer",
+   "price": 0,
+   "speed": 0,
+   "grip": 1,
+   "boost": 0,
+   "source": "starter",
+   "starter": true,
+   "blurb": "Grip for mud, speed for straights."
+  },
+  {
+   "id": "trailblazer-wheels-1",
+   "name": "Mud Paddles",
+   "slot": "WHEELS",
+   "vehicle": "trailblazer",
+   "price": 12,
+   "speed": 0,
+   "grip": 3,
+   "boost": 0,
+   "source": "shop",
+   "starter": false,
+   "blurb": "Grip for mud, speed for straights."
+  },
+  {
+   "id": "trailblazer-wheels-2",
+   "name": "Rock Crawlers",
+   "slot": "WHEELS",
+   "vehicle": "trailblazer",
+   "price": 32,
+   "speed": 0,
+   "grip": 3,
+   "boost": 1,
+   "source": "shop",
+   "starter": false,
+   "blurb": "Grip for mud, speed for straights."
+  },
+  {
+   "id": "trailblazer-engine-0",
+   "name": "Diesel Thumper",
+   "slot": "ENGINE",
+   "vehicle": "trailblazer",
+   "price": 0,
+   "speed": 0,
+   "grip": 0,
+   "boost": 1,
+   "source": "starter",
+   "starter": true,
+   "blurb": "More power for ramps and hills."
+  },
+  {
+   "id": "trailblazer-engine-1",
+   "name": "Torque Monster V8",
+   "slot": "ENGINE",
+   "vehicle": "trailblazer",
+   "price": 18,
+   "speed": 1,
+   "grip": 0,
+   "boost": 2,
+   "source": "shop",
+   "starter": false,
+   "blurb": "More power for ramps and hills."
+  },
+  {
+   "id": "trailblazer-engine-2",
+   "name": "Clockwork Hybrid",
+   "slot": "ENGINE",
+   "vehicle": "trailblazer",
+   "price": 0,
+   "speed": 1,
+   "grip": 1,
+   "boost": 2,
+   "source": "blueprint",
+   "starter": false,
+   "blurb": "More power for ramps and hills."
+  },
+  {
+   "id": "trailblazer-aero-0",
+   "name": "Roof Rack",
+   "slot": "AERO",
+   "vehicle": "trailblazer",
+   "price": 0,
+   "speed": 0,
+   "grip": 0,
+   "boost": 0,
+   "source": "starter",
+   "starter": true,
+   "blurb": "Air pushes the car down so it grips."
+  },
+  {
+   "id": "trailblazer-aero-1",
+   "name": "Snorkel",
+   "slot": "AERO",
+   "vehicle": "trailblazer",
+   "price": 12,
+   "speed": 0,
+   "grip": 1,
+   "boost": 1,
+   "source": "shop",
+   "starter": false,
+   "blurb": "Air pushes the car down so it grips."
+  },
+  {
+   "id": "trailblazer-aero-2",
+   "name": "Air Dam",
+   "slot": "AERO",
+   "vehicle": "trailblazer",
+   "price": 28,
+   "speed": 1,
+   "grip": 1,
+   "boost": 0,
+   "source": "shop",
+   "starter": false,
+   "blurb": "Air pushes the car down so it grips."
+  },
+  {
+   "id": "trailblazer-utility-0",
+   "name": "Tow Hook",
+   "slot": "UTILITY",
+   "vehicle": "trailblazer",
+   "price": 0,
+   "speed": 0,
+   "grip": 1,
+   "boost": 0,
+   "source": "starter",
+   "starter": true,
+   "blurb": "Handy extras for big jobs."
+  },
+  {
+   "id": "trailblazer-utility-1",
+   "name": "Front Winch",
+   "slot": "UTILITY",
+   "vehicle": "trailblazer",
+   "price": 12,
+   "speed": 0,
+   "grip": 1,
+   "boost": 1,
+   "source": "shop",
+   "starter": false,
+   "blurb": "Handy extras for big jobs."
+  },
+  {
+   "id": "trailblazer-utility-2",
+   "name": "Floodlight Bar",
+   "slot": "UTILITY",
+   "vehicle": "trailblazer",
+   "price": 0,
+   "speed": 0,
+   "grip": 1,
+   "boost": 2,
+   "source": "gear",
+   "starter": false,
+   "blurb": "Handy extras for big jobs."
+  },
+  {
+   "id": "trailblazer-color-0",
+   "name": "Rescue Orange",
+   "slot": "COLOR",
+   "vehicle": "trailblazer",
+   "price": 0,
+   "speed": 0,
+   "grip": 0,
+   "boost": 0,
+   "source": "starter",
+   "starter": true,
+   "blurb": "A fresh coat of bricks."
+  },
+  {
+   "id": "trailblazer-color-1",
+   "name": "Forest Green",
+   "slot": "COLOR",
+   "vehicle": "trailblazer",
+   "price": 12,
+   "speed": 0,
+   "grip": 0,
+   "boost": 0,
+   "source": "shop",
+   "starter": false,
+   "blurb": "A fresh coat of bricks."
+  },
+  {
+   "id": "trailblazer-color-2",
+   "name": "Desert Sand",
+   "slot": "COLOR",
+   "vehicle": "trailblazer",
+   "price": 26,
+   "speed": 0,
+   "grip": 0,
+   "boost": 0,
+   "source": "shop",
+   "starter": false,
+   "blurb": "A fresh coat of bricks."
+  },
+  {
+   "id": "apex-chassis-0",
+   "name": "Carbon Tub",
+   "slot": "CHASSIS",
+   "vehicle": "apex",
+   "price": 0,
+   "speed": 1,
+   "grip": 0,
+   "boost": 1,
+   "source": "starter",
+   "starter": true,
+   "blurb": "The frame everything snaps onto."
+  },
+  {
+   "id": "apex-chassis-1",
+   "name": "Featherweight Tub",
+   "slot": "CHASSIS",
+   "vehicle": "apex",
+   "price": 14,
+   "speed": 2,
+   "grip": 0,
+   "boost": 1,
+   "source": "shop",
+   "starter": false,
+   "blurb": "The frame everything snaps onto."
+  },
+  {
+   "id": "apex-chassis-2",
+   "name": "Ground-Effect Tub",
+   "slot": "CHASSIS",
+   "vehicle": "apex",
+   "price": 36,
+   "speed": 1,
+   "grip": 2,
+   "boost": 1,
+   "source": "shop",
+   "starter": false,
+   "blurb": "The frame everything snaps onto."
+  },
+  {
+   "id": "apex-wheels-0",
+   "name": "Sport Wheels",
+   "slot": "WHEELS",
+   "vehicle": "apex",
+   "price": 0,
+   "speed": 0,
+   "grip": 1,
+   "boost": 0,
+   "source": "starter",
+   "starter": true,
+   "blurb": "Grip for mud, speed for straights."
+  },
+  {
+   "id": "apex-wheels-1",
+   "name": "Grip Slicks",
+   "slot": "WHEELS",
+   "vehicle": "apex",
+   "price": 12,
+   "speed": 0,
+   "grip": 2,
+   "boost": 0,
+   "source": "shop",
+   "starter": false,
+   "blurb": "Grip for mud, speed for straights."
+  },
+  {
+   "id": "apex-wheels-2",
+   "name": "Aero Discs",
+   "slot": "WHEELS",
+   "vehicle": "apex",
+   "price": 32,
+   "speed": 2,
+   "grip": 1,
+   "boost": 0,
+   "source": "shop",
+   "starter": false,
+   "blurb": "Grip for mud, speed for straights."
+  },
+  {
+   "id": "apex-engine-0",
+   "name": "Electric Twin Motors",
+   "slot": "ENGINE",
+   "vehicle": "apex",
+   "price": 0,
+   "speed": 1,
+   "grip": 0,
+   "boost": 1,
+   "source": "starter",
+   "starter": true,
+   "blurb": "More power for ramps and hills."
+  },
+  {
+   "id": "apex-engine-1",
+   "name": "Quad Motor Pack",
+   "slot": "ENGINE",
+   "vehicle": "apex",
+   "price": 20,
+   "speed": 2,
+   "grip": 0,
+   "boost": 2,
+   "source": "shop",
+   "starter": false,
+   "blurb": "More power for ramps and hills."
+  },
+  {
+   "id": "apex-engine-2",
+   "name": "Fusion Prototype Core",
+   "slot": "ENGINE",
+   "vehicle": "apex",
+   "price": 0,
+   "speed": 2,
+   "grip": 0,
+   "boost": 3,
+   "source": "blueprint",
+   "starter": false,
+   "blurb": "More power for ramps and hills."
+  },
+  {
+   "id": "apex-aero-0",
+   "name": "Nose Cone",
+   "slot": "AERO",
+   "vehicle": "apex",
+   "price": 0,
+   "speed": 1,
+   "grip": 0,
+   "boost": 0,
+   "source": "starter",
+   "starter": true,
+   "blurb": "Air pushes the car down so it grips."
+  },
+  {
+   "id": "apex-aero-1",
+   "name": "Twin-Plane Wing",
+   "slot": "AERO",
+   "vehicle": "apex",
+   "price": 14,
+   "speed": 1,
+   "grip": 1,
+   "boost": 0,
+   "source": "shop",
+   "starter": false,
+   "blurb": "Air pushes the car down so it grips."
+  },
+  {
+   "id": "apex-aero-2",
+   "name": "Active Air Brake",
+   "slot": "AERO",
+   "vehicle": "apex",
+   "price": 32,
+   "speed": 1,
+   "grip": 2,
+   "boost": 1,
+   "source": "shop",
+   "starter": false,
+   "blurb": "Air pushes the car down so it grips."
+  },
+  {
+   "id": "apex-utility-0",
+   "name": "Light Strip",
+   "slot": "UTILITY",
+   "vehicle": "apex",
+   "price": 0,
+   "speed": 0,
+   "grip": 0,
+   "boost": 1,
+   "source": "starter",
+   "starter": true,
+   "blurb": "Handy extras for big jobs."
+  },
+  {
+   "id": "apex-utility-1",
+   "name": "Rear Thruster",
+   "slot": "UTILITY",
+   "vehicle": "apex",
+   "price": 14,
+   "speed": 1,
+   "grip": 0,
+   "boost": 2,
+   "source": "shop",
+   "starter": false,
+   "blurb": "Handy extras for big jobs."
+  },
+  {
+   "id": "apex-utility-2",
+   "name": "Boost Capacitor",
+   "slot": "UTILITY",
+   "vehicle": "apex",
+   "price": 0,
+   "speed": 1,
+   "grip": 0,
+   "boost": 3,
+   "source": "gear",
+   "starter": false,
+   "blurb": "Handy extras for big jobs."
+  },
+  {
+   "id": "apex-color-0",
+   "name": "Silver Arrow",
+   "slot": "COLOR",
+   "vehicle": "apex",
+   "price": 0,
+   "speed": 0,
+   "grip": 0,
+   "boost": 0,
+   "source": "starter",
+   "starter": true,
+   "blurb": "A fresh coat of bricks."
+  },
+  {
+   "id": "apex-color-1",
+   "name": "Midnight Purple",
+   "slot": "COLOR",
+   "vehicle": "apex",
+   "price": 12,
+   "speed": 0,
+   "grip": 0,
+   "boost": 0,
+   "source": "shop",
+   "starter": false,
+   "blurb": "A fresh coat of bricks."
+  },
+  {
+   "id": "apex-color-2",
+   "name": "Lime Lightning",
+   "slot": "COLOR",
+   "vehicle": "apex",
+   "price": 26,
+   "speed": 0,
+   "grip": 0,
+   "boost": 0,
+   "source": "shop",
+   "starter": false,
+   "blurb": "A fresh coat of bricks."
+  }
+ ],
+ "tracks": [
+  {
+   "id": "pit-lane-sprint",
+   "name": "Pit Lane Sprint",
+   "vehicle": "comet",
+   "segments": [
+    {
+     "type": "ramp",
+     "length": 18
+    },
+    {
+     "type": "straight",
+     "length": 40
+    },
+    {
+     "type": "mud",
+     "length": 12
+    },
+    {
+     "type": "hill",
+     "length": 16
+    },
+    {
+     "type": "straight",
+     "length": 30
+    }
+   ],
+   "medals": [
+    4.5,
+    4.8,
+    7.8
+   ],
+   "calibration": {
+    "starter": 7.7,
+    "bestShop": 4.7,
+    "bestAll": 4.4
+   }
+  },
+  {
+   "id": "mud-mountain",
+   "name": "Mud Mountain",
+   "vehicle": "trailblazer",
+   "segments": [
+    {
+     "type": "straight",
+     "length": 20
+    },
+    {
+     "type": "mud",
+     "length": 24
+    },
+    {
+     "type": "hill",
+     "length": 24
+    },
+    {
+     "type": "ramp",
+     "length": 16
+    },
+    {
+     "type": "mud",
+     "length": 14
+    }
+   ],
+   "medals": [
+    5.1,
+    5.3,
+    8.2
+   ],
+   "calibration": {
+    "starter": 8.1,
+    "bestShop": 5.3,
+    "bestAll": 5.1
+   }
+  },
+  {
+   "id": "wind-tunnel-strip",
+   "name": "Wind Tunnel Strip",
+   "vehicle": "apex",
+   "segments": [
+    {
+     "type": "straight",
+     "length": 50
+    },
+    {
+     "type": "ramp",
+     "length": 20
+    },
+    {
+     "type": "straight",
+     "length": 40
+    },
+    {
+     "type": "hill",
+     "length": 12
+    },
+    {
+     "type": "mud",
+     "length": 8
+    }
+   ],
+   "medals": [
+    4.6,
+    4.8,
+    7.3
+   ],
+   "calibration": {
+    "starter": 7.3,
+    "bestShop": 4.7,
+    "bestAll": 4.6
+   }
+  }
+ ]
+}

@@ -1,0 +1,28 @@
+{
+ "id": "b1-08",
+ "kind": "STORY",
+ "bay": 1,
+ "index": 8,
+ "title": "Stacked Crates",
+ "difficulty": "CHALLENGE",
+ "moves": 24,
+ "colors": 5,
+ "seed": 1296,
+ "baseCoins": 10,
+ "layout": [
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "22233222",
+  "22222222",
+  "22233222"
+ ],
+ "goals": [
+  {
+   "type": "CRATE"
+  }
+ ],
+ "boNote": "This stack took me five tries in '78. Pop the top row first, so pieces can fall in and help."
+}

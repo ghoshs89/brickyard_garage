@@ -1,0 +1,39 @@
+{
+ "id": "b3-01",
+ "kind": "STORY",
+ "bay": 3,
+ "index": 31,
+ "title": "Track Baseplates",
+ "difficulty": "WARMUP",
+ "moves": 15,
+ "colors": 5,
+ "seed": 2147,
+ "baseCoins": 10,
+ "layout": [
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........"
+ ],
+ "floor": [
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "...tt..."
+ ],
+ "goals": [
+  {
+   "type": "TRACK",
+   "count": 58
+  }
+ ],
+ "tutorial": "Match on the checkered track to spread it to every piece in the match. Cover the floor!"
+}

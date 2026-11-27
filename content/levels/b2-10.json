@@ -1,0 +1,87 @@
+{
+ "id": "b2-10",
+ "kind": "STORY",
+ "bay": 2,
+ "index": 25,
+ "title": "Assembly Line",
+ "difficulty": "WARMUP",
+ "moves": 11,
+ "colors": 5,
+ "seed": 1925,
+ "baseCoins": 10,
+ "layout": [
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........"
+ ],
+ "conveyors": [
+  [
+   [
+    2,
+    2
+   ],
+   [
+    2,
+    3
+   ],
+   [
+    2,
+    4
+   ],
+   [
+    2,
+    5
+   ],
+   [
+    3,
+    5
+   ],
+   [
+    4,
+    5
+   ],
+   [
+    5,
+    5
+   ],
+   [
+    5,
+    4
+   ],
+   [
+    5,
+    3
+   ],
+   [
+    5,
+    2
+   ],
+   [
+    4,
+    2
+   ],
+   [
+    3,
+    2
+   ]
+  ]
+ ],
+ "goals": [
+  {
+   "type": "COLOR",
+   "color": "RED",
+   "count": 60
+  },
+  {
+   "type": "COLOR",
+   "color": "YELLOW",
+   "count": 60
+  }
+ ],
+ "tutorial": "Assembly Lines move everything on them one step after each move. Plan ahead!"
+}

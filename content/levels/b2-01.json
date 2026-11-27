@@ -1,0 +1,33 @@
+{
+ "id": "b2-01",
+ "kind": "STORY",
+ "bay": 2,
+ "index": 16,
+ "title": "Oil Spill",
+ "difficulty": "WARMUP",
+ "moves": 12,
+ "colors": 5,
+ "seed": 1592,
+ "baseCoins": 10,
+ "layout": [
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "~..~~..~",
+  "..~..~..",
+  ".~....~."
+ ],
+ "goals": [
+  {
+   "type": "OIL"
+  },
+  {
+   "type": "COLOR",
+   "color": "BLUE",
+   "count": 35
+  }
+ ],
+ "tutorial": "Oil spreads if you don't clean any up on your turn. Match next to it to mop it up!"
+}

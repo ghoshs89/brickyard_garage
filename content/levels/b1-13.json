@@ -1,0 +1,43 @@
+{
+ "id": "b1-13",
+ "kind": "STORY",
+ "bay": 1,
+ "index": 13,
+ "title": "Diamond Clamps",
+ "difficulty": "WARMUP",
+ "moves": 16,
+ "colors": 5,
+ "seed": 1481,
+ "baseCoins": 10,
+ "layout": [
+  "##....##",
+  "#......#",
+  "........",
+  "........",
+  "........",
+  "........",
+  "#......#",
+  "##....##"
+ ],
+ "overlay": [
+  "........",
+  "........",
+  "...22...",
+  "..2..2..",
+  "..2..2..",
+  "........",
+  "........",
+  "........"
+ ],
+ "goals": [
+  {
+   "type": "CLAMP"
+  },
+  {
+   "type": "COLOR",
+   "color": "YELLOW",
+   "count": 40
+  }
+ ],
+ "tutorial": "Double clamps need two matches."
+}

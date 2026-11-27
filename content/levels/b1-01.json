@@ -1,0 +1,30 @@
+{
+ "id": "b1-01",
+ "kind": "STORY",
+ "bay": 1,
+ "index": 1,
+ "title": "Rolling Start",
+ "difficulty": "WARMUP",
+ "moves": 12,
+ "colors": 5,
+ "seed": 1037,
+ "baseCoins": 10,
+ "layout": [
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........"
+ ],
+ "goals": [
+  {
+   "type": "COLOR",
+   "color": "RED",
+   "count": 40
+  }
+ ],
+ "tutorial": "Swipe two neighbours to line up 3 matching pieces. Collect the Red Bricks!"
+}

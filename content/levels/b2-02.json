@@ -1,0 +1,32 @@
+{
+ "id": "b2-02",
+ "kind": "STORY",
+ "bay": 2,
+ "index": 17,
+ "title": "Slippery Floor",
+ "difficulty": "WARMUP",
+ "moves": 15,
+ "colors": 5,
+ "seed": 1629,
+ "baseCoins": 10,
+ "layout": [
+  "........",
+  "........",
+  "........",
+  "........",
+  "~......~",
+  "........",
+  "..~..~..",
+  "~..~~..~"
+ ],
+ "goals": [
+  {
+   "type": "OIL"
+  },
+  {
+   "type": "COLOR",
+   "color": "GREEN",
+   "count": 45
+  }
+ ]
+}

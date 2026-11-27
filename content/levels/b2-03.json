@@ -1,0 +1,38 @@
+{
+ "id": "b2-03",
+ "kind": "STORY",
+ "bay": 2,
+ "index": 18,
+ "title": "Rust Plates",
+ "difficulty": "WARMUP",
+ "moves": 11,
+ "colors": 5,
+ "seed": 1666,
+ "baseCoins": 10,
+ "layout": [
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........"
+ ],
+ "floor": [
+  "........",
+  "........",
+  "rrrrrrrr",
+  "rrrrrrrr",
+  "rrrrrrrr",
+  "rrrrrrrr",
+  "rrrrrrrr",
+  "rrrrrrrr"
+ ],
+ "goals": [
+  {
+   "type": "RUST"
+  }
+ ],
+ "tutorial": "Rust Plates are under the pieces. Clear the piece on top to polish the rust away."
+}

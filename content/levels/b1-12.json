@@ -1,0 +1,61 @@
+{
+ "id": "b1-12",
+ "kind": "STORY",
+ "bay": 1,
+ "index": 12,
+ "title": "Parts Under Crates",
+ "difficulty": "CHALLENGE",
+ "moves": 16,
+ "colors": 5,
+ "seed": 1444,
+ "baseCoins": 10,
+ "layout": [
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "22....22",
+  "22....22"
+ ],
+ "dispensers": [
+  [
+   0,
+   3
+  ],
+  [
+   0,
+   4
+  ]
+ ],
+ "exits": [
+  [
+   7,
+   2
+  ],
+  [
+   7,
+   3
+  ],
+  [
+   7,
+   4
+  ],
+  [
+   7,
+   5
+  ]
+ ],
+ "partsTotal": 4,
+ "goals": [
+  {
+   "type": "PART",
+   "count": 4
+  },
+  {
+   "type": "CRATE"
+  }
+ ],
+ "boNote": "Parts only fall straight down, so clear a path under them. I always checked the path before I pulled a part."
+}

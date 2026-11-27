@@ -1,0 +1,22 @@
+{
+  "id": "bp-11",
+  "kind": "BLUEPRINT",
+  "index": 11,
+  "title": "Double Clamps",
+  "moves": 4,
+  "exactMoves": 4,
+  "colors": 4,
+  "seed": 59,
+  "baseCoins": 0,
+  "boNote": "Double clamps need two hits each. Count carefully.",
+  "tutorial": "Count the hits each obstacle needs.",
+  "layout": ["BRRGYR", "YRGGBR", "RBYBBY", "BBRGRB", "BGYBGR", "YYBYGR"],
+  "floor": ["......", "......", "......", "......", "......", "......"],
+  "overlay": ["......", "......", "2.....", "......", "......", "..22.."],
+  "refills": ["GYYGGYYBBRBYYR", "BGRRBYBGRRYYBB", "GYBBGBGBBBRBYG", "GRBRYYGRRGGYGG", "RYGYGRBRGRYBRB", "BGYRGBBBRRYRRB"],
+  "goals": [{
+      "type": "CLAMP"
+    }],
+  "witness": [[0, 17, 23, -1], [0, 2, 3, -1], [0, 20, 21, -1], [0, 14, 20, -1]],
+  "forgeStats": "first moves that win 2/6, noisy play wins 2%"
+}

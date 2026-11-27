@@ -1,0 +1,74 @@
+{
+ "id": "b1-11",
+ "kind": "STORY",
+ "bay": 1,
+ "index": 11,
+ "title": "Rare Parts",
+ "difficulty": "WARMUP",
+ "moves": 15,
+ "colors": 5,
+ "seed": 1407,
+ "baseCoins": 10,
+ "layout": [
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........"
+ ],
+ "dispensers": [
+  [
+   0,
+   2
+  ],
+  [
+   0,
+   5
+  ]
+ ],
+ "exits": [
+  [
+   7,
+   0
+  ],
+  [
+   7,
+   1
+  ],
+  [
+   7,
+   2
+  ],
+  [
+   7,
+   3
+  ],
+  [
+   7,
+   4
+  ],
+  [
+   7,
+   5
+  ],
+  [
+   7,
+   6
+  ],
+  [
+   7,
+   7
+  ]
+ ],
+ "partsTotal": 4,
+ "goals": [
+  {
+   "type": "PART",
+   "count": 4
+  }
+ ],
+ "tutorial": "Rare Car Parts drop from the dispensers at the top. Clear the pieces below a part to bring it down to the exit bay."
+}

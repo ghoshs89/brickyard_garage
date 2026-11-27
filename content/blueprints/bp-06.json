@@ -1,0 +1,22 @@
+{
+  "id": "bp-06",
+  "kind": "BLUEPRINT",
+  "index": 6,
+  "title": "Rust Map",
+  "moves": 3,
+  "exactMoves": 3,
+  "colors": 4,
+  "seed": 1,
+  "baseCoins": 0,
+  "boNote": "Rust only goes when the piece on top goes.",
+  "tutorial": "Make matches that sit right on the rust.",
+  "layout": ["GBRGGR", "YRGBRY", "YBBRRB", "GRGRGB", "BYRYGR", "GYGYRB"],
+  "floor": ["......", "......", "r...r.", "..r...", "......", "rr...r"],
+  "overlay": ["......", "......", "......", "......", "......", "......"],
+  "refills": ["YYGBYRRYBRBYRY", "YGRYRBBBBGRGGG", "YYYRYBRBRRYRGB", "BBYBYRYYGYRBBG", "BBGBRGYGYGBGYB", "GYGYBRRYRBYYBG"],
+  "goals": [{
+      "type": "RUST"
+    }],
+  "witness": [[0, 2, 8, -1], [0, 9, 15, -1], [0, 8, 9, -1]],
+  "forgeStats": "first moves that win 1/8, noisy play wins 0%"
+}

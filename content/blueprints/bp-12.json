@@ -1,0 +1,24 @@
+{
+  "id": "bp-12",
+  "kind": "BLUEPRINT",
+  "index": 12,
+  "title": "Fusion Core Blueprint",
+  "moves": 4,
+  "exactMoves": 4,
+  "colors": 4,
+  "seed": 2566,
+  "baseCoins": 0,
+  "boNote": "My hardest blueprint. Four moves. Take as long as you like.",
+  "tutorial": "Big plans are many small plans in a row.",
+  "layout": ["BYBBYB", "RRYGGY", "RGBGRY", "GYYBRR", "RRG1YB", "RBGYYR"],
+  "floor": ["......", "......", "......", "......", "......", "......"],
+  "overlay": ["......", "......", ".....1", "......", "......", "..1.1."],
+  "refills": ["RRBRRYGGGYYBRR", "RYGYGBRYBYGYYR", "GBYGYGBGYYYBRY", "RYBGBBYYBBBRGG", "BRYYYBYBGYGGRY", "BBYGBYYBGRGRYB"],
+  "goals": [{
+      "type": "CRATE"
+    }, {
+      "type": "CLAMP"
+    }],
+  "witness": [[0, 0, 1, -1], [0, 4, 5, -1], [0, 2, 8, -1], [0, 9, 10, -1]],
+  "forgeStats": "first moves that win 2/4, noisy play wins 5%"
+}

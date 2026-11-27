@@ -1,0 +1,22 @@
+{
+  "id": "bp-07",
+  "kind": "BLUEPRINT",
+  "index": 7,
+  "title": "Crates and Clamps",
+  "moves": 3,
+  "exactMoves": 3,
+  "colors": 4,
+  "seed": 132,
+  "baseCoins": 0,
+  "boNote": "Two kinds of job. Which one first?",
+  "tutorial": "Choosing the order is part of the plan.",
+  "layout": ["RuBYYR", "RYYGRY", "BRRGYY", "GYYBRR", "RBRGGB", "BGRGYB"],
+  "floor": ["......", "......", "......", "......", "......", "......"],
+  "overlay": ["......", "1.....", "......", "...1..", ".....1", "....1."],
+  "refills": ["GGRRGBYRGYGGRY", "BRRBRBBYRYYYRR", "YRGYRRYRBYBRYY", "BBRYYRYYBRYRYR", "YGYGGGBBGRGBGB", "YYYGYRRYBRBYGB"],
+  "goals": [{
+      "type": "CLAMP"
+    }],
+  "witness": [[0, 0, 1, -1], [0, 4, 10, -1], [0, 15, 16, -1]],
+  "forgeStats": "first moves that win 5/15, noisy play wins 3%"
+}

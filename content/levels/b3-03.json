@@ -1,0 +1,42 @@
+{
+ "id": "b3-03",
+ "kind": "STORY",
+ "bay": 3,
+ "index": 33,
+ "title": "Oily Track",
+ "difficulty": "CHALLENGE",
+ "moves": 13,
+ "colors": 5,
+ "seed": 2221,
+ "baseCoins": 10,
+ "layout": [
+  "~......~",
+  "........",
+  "........",
+  "..~..~..",
+  "........",
+  "...~~...",
+  "........",
+  "........"
+ ],
+ "floor": [
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "t......t"
+ ],
+ "goals": [
+  {
+   "type": "TRACK",
+   "count": 52
+  },
+  {
+   "type": "OIL"
+  }
+ ],
+ "boNote": "Power-ups fired from the track paint every cell they hit. Build them on the checkered squares!"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "bp-02",
+  "kind": "BLUEPRINT",
+  "index": 2,
+  "title": "Nitro Shortcut",
+  "moves": 2,
+  "exactMoves": 2,
+  "colors": 4,
+  "seed": 3,
+  "baseCoins": 0,
+  "boNote": "There's a Nitro on the board already. Where does it do the most good?",
+  "tutorial": "Power-ups are best saved for the right line.",
+  "layout": ["YhRBRY", "BBRBRG", "RGBRBG", "YRRGRR", "BB11YR", "YBY11Y"],
+  "floor": ["......", "......", "......", "......", "......", "......"],
+  "overlay": ["......", "......", "......", "......", "......", "......"],
+  "refills": ["RBGRBBYGGRGYBY", "BGGGGYGYBRBBRR", "YGBBGGRYYBYBBG", "RBGYYBBGYYGRGR", "RGRBRYRRBGGBGB", "BBRRGGBBGGBRBG"],
+  "goals": [{
+      "type": "CRATE"
+    }],
+  "witness": [[0, 14, 15, -1], [0, 26, 32, -1]],
+  "forgeStats": "first moves that win 3/18, noisy play wins 6%"
+}

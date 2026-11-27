@@ -1,0 +1,22 @@
+{
+  "id": "bp-08",
+  "kind": "BLUEPRINT",
+  "index": 8,
+  "title": "Clockwork Blueprint",
+  "moves": 3,
+  "exactMoves": 3,
+  "colors": 4,
+  "seed": 354,
+  "baseCoins": 0,
+  "boNote": "The Clockwork Hybrid ran on exactly this trick. Find the key move.",
+  "tutorial": "One key move unlocks the rest.",
+  "layout": ["RYYRBB", "GRRBGR", "Y~YG~Y", "RBRY~v", "BYGGBY", "Y~RBYR"],
+  "floor": ["......", "......", "......", "......", "......", "......"],
+  "overlay": ["......", "......", "......", "......", "......", "......"],
+  "refills": ["BBRBRYBRYGRRBR", "GYGYRGGBYYYBGB", "GGGGYGBRRGGBBR", "GRYGRGBRYYBGRY", "YBYBYRBRGGYBBR", "GBRGGRYYRRBYBR"],
+  "goals": [{
+      "type": "OIL"
+    }],
+  "witness": [[0, 3, 9, -1], [0, 15, 21, -1], [0, 15, 14, -1]],
+  "forgeStats": "first moves that win 1/7, noisy play wins 16%"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "bp-04",
+  "kind": "BLUEPRINT",
+  "index": 4,
+  "title": "Golden Engine Blueprint",
+  "moves": 3,
+  "exactMoves": 3,
+  "colors": 4,
+  "seed": 8,
+  "baseCoins": 0,
+  "boNote": "This is how I designed the Golden Piston. Three moves, not one more.",
+  "tutorial": "Hit the same crate twice by planning two matches beside it.",
+  "layout": ["RRYBYY", "BRBBGB", "BYRYYR", "22BGBR", "GBRGBY", "YGRYG2"],
+  "floor": ["......", "......", "......", "......", "......", "......"],
+  "overlay": ["......", "......", "......", "......", "......", "......"],
+  "refills": ["GYGRBRRGBRRRBB", "YBRGGGYRYGBBGB", "RRGGRYGGBBRYBR", "RRRYYBYRYYGRBG", "BGYRYBBYRBYBRY", "BYBRYYYGRBGRYY"],
+  "goals": [{
+      "type": "CRATE"
+    }],
+  "witness": [[0, 13, 14, -1], [1, 2, -1, -1], [1, 26, -1, -1]],
+  "forgeStats": "first moves that win 2/6, noisy play wins 14%"
+}

@@ -1,0 +1,46 @@
+{
+ "id": "gear-08",
+ "index": 8,
+ "bay": 3,
+ "title": "Two Wheels",
+ "prompt": "Drive BOTH wind-tunnel fans: the left one clockwise, the right one anticlockwise.",
+ "lesson": "One motor can drive many gears. Each branch flips direction on its own.",
+ "boNote": "Two jobs from one motor. Plan the branches.",
+ "w": 18,
+ "h": 10,
+ "fixed": [
+  {
+   "x": 9,
+   "y": 5,
+   "teeth": 16,
+   "role": "motor",
+   "label": "Motor"
+  },
+  {
+   "x": 2,
+   "y": 5,
+   "teeth": 8,
+   "role": "output",
+   "wantDir": "CW",
+   "label": "Left fan"
+  },
+  {
+   "x": 16,
+   "y": 5,
+   "teeth": 8,
+   "role": "output",
+   "wantDir": "CCW",
+   "label": "Right fan"
+  }
+ ],
+ "tray": [
+  2,
+  2,
+  2
+ ],
+ "maxPlace": 3,
+ "belts": [],
+ "blocked": [],
+ "rewardCoins": 15,
+ "witness": [[12, 5, 8], [14, 5, 8], [5, 5, 16]]
+}

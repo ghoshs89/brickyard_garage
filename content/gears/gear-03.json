@@ -1,0 +1,38 @@
+{
+ "id": "gear-03",
+ "index": 3,
+ "bay": 1,
+ "title": "Twice as Fast",
+ "prompt": "Pick a gear for the empty axle so it spins TWICE as fast as the motor.",
+ "lesson": "A small gear driven by a bigger one spins faster. 16 teeth driving 8 teeth = twice as fast.",
+ "boNote": "Count the teeth. The motor has 16.",
+ "w": 18,
+ "h": 10,
+ "fixed": [
+  {
+   "x": 3,
+   "y": 5,
+   "teeth": 16,
+   "role": "motor",
+   "label": "Motor"
+  },
+  {
+   "x": 10,
+   "y": 5,
+   "teeth": 8,
+   "role": "axle",
+   "wantSpeed": 2,
+   "label": "Sign spinner"
+  }
+ ],
+ "tray": [
+  1,
+  1,
+  1
+ ],
+ "maxPlace": 2,
+ "belts": [],
+ "blocked": [],
+ "rewardCoins": 15,
+ "witness": [[7, 5, 16], [10, 5, 8]]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "bp-05",
+  "kind": "BLUEPRINT",
+  "index": 5,
+  "title": "Oil Check",
+  "moves": 3,
+  "exactMoves": 3,
+  "colors": 4,
+  "seed": 805,
+  "baseCoins": 0,
+  "boNote": "Oil spreads if you miss. Every move has to clean some.",
+  "tutorial": "Order matters: clean the spill that would spread first.",
+  "layout": ["BGYBGR", "YRYGYR", "BBGGRB", "~~RYYG", "G~RBYG", "GRYBGR"],
+  "floor": ["......", "......", "......", "......", "......", "......"],
+  "overlay": ["......", "......", "......", "......", "......", "......"],
+  "refills": ["GRRBGBRRRRBGGR", "GYGRBYGYRRGGGG", "BGYGRBBRRRYRBR", "GRGGBRRBYGYYYG", "YRRRGBBGBBYGBB", "RBYRRYGBBYRRRY"],
+  "goals": [{
+      "type": "OIL"
+    }],
+  "witness": [[0, 3, 4, -1], [0, 10, 16, -1], [0, 15, 21, -1]],
+  "forgeStats": "first moves that win 2/5, noisy play wins 4%"
+}

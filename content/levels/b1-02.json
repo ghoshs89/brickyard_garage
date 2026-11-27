@@ -1,0 +1,35 @@
+{
+ "id": "b1-02",
+ "kind": "STORY",
+ "bay": 1,
+ "index": 2,
+ "title": "Nitro Lesson",
+ "difficulty": "WARMUP",
+ "moves": 13,
+ "colors": 5,
+ "seed": 1074,
+ "baseCoins": 10,
+ "layout": [
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........"
+ ],
+ "goals": [
+  {
+   "type": "COLOR",
+   "color": "BLUE",
+   "count": 45
+  },
+  {
+   "type": "COLOR",
+   "color": "YELLOW",
+   "count": 45
+  }
+ ],
+ "tutorial": "Line up 4 to build a Nitro Booster. Tap it to blast a whole line!"
+}

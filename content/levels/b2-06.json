@@ -1,0 +1,77 @@
+{
+ "id": "b2-06",
+ "kind": "STORY",
+ "bay": 2,
+ "index": 21,
+ "title": "Steel Bulkheads",
+ "difficulty": "WARMUP",
+ "moves": 22,
+ "colors": 5,
+ "seed": 1777,
+ "baseCoins": 10,
+ "layout": [
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........"
+ ],
+ "walls": [
+  {
+   "r": 3,
+   "c": 0,
+   "side": "below"
+  },
+  {
+   "r": 3,
+   "c": 1,
+   "side": "below"
+  },
+  {
+   "r": 3,
+   "c": 2,
+   "side": "below"
+  },
+  {
+   "r": 3,
+   "c": 3,
+   "side": "below"
+  },
+  {
+   "r": 3,
+   "c": 4,
+   "side": "below"
+  },
+  {
+   "r": 3,
+   "c": 5,
+   "side": "below"
+  },
+  {
+   "r": 3,
+   "c": 6,
+   "side": "below"
+  },
+  {
+   "r": 3,
+   "c": 7,
+   "side": "below"
+  }
+ ],
+ "goals": [
+  {
+   "type": "COLOR",
+   "color": "ORANGE",
+   "count": 55
+  },
+  {
+   "type": "COLOR",
+   "color": "BLUE",
+   "count": 55
+  }
+ ],
+ "tutorial": "Steel Bulkheads block swaps and falling. New pieces drop in just under them."
+}

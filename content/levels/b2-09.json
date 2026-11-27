@@ -1,0 +1,83 @@
+{
+ "id": "b2-09",
+ "kind": "STORY",
+ "bay": 2,
+ "index": 24,
+ "title": "Split Garage",
+ "difficulty": "CHALLENGE",
+ "moves": 16,
+ "colors": 5,
+ "seed": 1888,
+ "baseCoins": 10,
+ "layout": [
+  "~......~",
+  ".~....~.",
+  "..~..~..",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........"
+ ],
+ "overlay": [
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "11111111",
+  "11111111",
+  ".2....2."
+ ],
+ "walls": [
+  {
+   "r": 0,
+   "c": 3,
+   "side": "right"
+  },
+  {
+   "r": 1,
+   "c": 3,
+   "side": "right"
+  },
+  {
+   "r": 2,
+   "c": 3,
+   "side": "right"
+  },
+  {
+   "r": 3,
+   "c": 3,
+   "side": "right"
+  },
+  {
+   "r": 4,
+   "c": 3,
+   "side": "right"
+  },
+  {
+   "r": 5,
+   "c": 3,
+   "side": "right"
+  },
+  {
+   "r": 6,
+   "c": 3,
+   "side": "right"
+  },
+  {
+   "r": 7,
+   "c": 3,
+   "side": "right"
+  }
+ ],
+ "goals": [
+  {
+   "type": "OIL"
+  },
+  {
+   "type": "CLAMP"
+  }
+ ],
+ "boNote": "A bulkhead down the middle means two jobs, not one. Do the left, then the right. Slow is fine."
+}

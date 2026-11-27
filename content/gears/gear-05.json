@@ -1,0 +1,44 @@
+{
+ "id": "gear-05",
+ "index": 5,
+ "bay": 2,
+ "title": "Around the Block",
+ "prompt": "The toolbox is in the way. Get the drive around it to the crane.",
+ "lesson": "When the straight path is blocked, a chain of gears can go around. Direction still flips at every gear.",
+ "boNote": "I once spent a whole afternoon on this. Then I tried going underneath.",
+ "w": 18,
+ "h": 10,
+ "fixed": [
+  {
+   "x": 3,
+   "y": 2,
+   "teeth": 16,
+   "role": "motor",
+   "label": "Motor"
+  },
+  {
+   "x": 15,
+   "y": 2,
+   "teeth": 16,
+   "role": "output",
+   "label": "Crane hook"
+  }
+ ],
+ "tray": [
+  2,
+  4,
+  1
+ ],
+ "maxPlace": 4,
+ "belts": [],
+ "blocked": [
+  [
+   6,
+   0,
+   12,
+   4
+  ]
+ ],
+ "rewardCoins": 15,
+  "witness": [[3, 6, 16], [15, 6, 16], [7, 6, 16], [11, 6, 16]]
+}

@@ -1,0 +1,58 @@
+{
+ "id": "gear-06",
+ "index": 6,
+ "bay": 2,
+ "title": "Crossed Belt",
+ "prompt": "The belt is crossed. Connect the motor and the floodlight so the light turns CLOCKWISE.",
+ "lesson": "A straight belt keeps the direction. A crossed belt flips it, just like a gear.",
+ "boNote": "Belts are like gears that can reach far away.",
+ "w": 18,
+ "h": 10,
+ "fixed": [
+  {
+   "x": 3,
+   "y": 5,
+   "teeth": 16,
+   "role": "motor",
+   "label": "Motor"
+  },
+  {
+   "x": 7,
+   "y": 2,
+   "teeth": 8,
+   "role": "fixed",
+   "label": "Pulley A"
+  },
+  {
+   "x": 12,
+   "y": 2,
+   "teeth": 8,
+   "role": "fixed",
+   "label": "Pulley B"
+  },
+  {
+   "x": 15,
+   "y": 6,
+   "teeth": 16,
+   "role": "output",
+   "wantDir": "CW",
+   "label": "Floodlight"
+  }
+ ],
+ "tray": [
+  2,
+  2,
+  1
+ ],
+ "maxPlace": 3,
+ "belts": [
+  {
+   "a": 1,
+   "b": 2,
+   "crossed": true
+  }
+ ],
+ "blocked": [],
+ "rewardCoins": 15,
+ "witness": [[3, 2, 8], [5, 2, 8], [15, 2, 16]]
+}

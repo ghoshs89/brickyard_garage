@@ -1,0 +1,107 @@
+{
+ "id": "b3-06",
+ "kind": "STORY",
+ "bay": 3,
+ "index": 36,
+ "title": "Wind Tunnel Chutes",
+ "difficulty": "CHALLENGE",
+ "moves": 16,
+ "colors": 5,
+ "seed": 2332,
+ "baseCoins": 10,
+ "layout": [
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........"
+ ],
+ "floor": [
+  "rrrrrrrr",
+  "rrrrrrrr",
+  "rrrrrrrr",
+  "........",
+  "rrrrrrrr",
+  "rrrrrrrr",
+  "rrrrrrrr",
+  "rrrrrrrr"
+ ],
+ "walls": [
+  {
+   "r": 3,
+   "c": 0,
+   "side": "below"
+  },
+  {
+   "r": 3,
+   "c": 1,
+   "side": "below"
+  },
+  {
+   "r": 3,
+   "c": 2,
+   "side": "below"
+  },
+  {
+   "r": 3,
+   "c": 3,
+   "side": "below"
+  },
+  {
+   "r": 3,
+   "c": 4,
+   "side": "below"
+  },
+  {
+   "r": 3,
+   "c": 5,
+   "side": "below"
+  },
+  {
+   "r": 3,
+   "c": 6,
+   "side": "below"
+  },
+  {
+   "r": 3,
+   "c": 7,
+   "side": "below"
+  }
+ ],
+ "portals": [
+  {
+   "from": [
+    3,
+    0
+   ],
+   "to": [
+    4,
+    7
+   ]
+  },
+  {
+   "from": [
+    3,
+    7
+   ],
+   "to": [
+    4,
+    0
+   ]
+  }
+ ],
+ "goals": [
+  {
+   "type": "RUST"
+  },
+  {
+   "type": "COLOR",
+   "color": "BLUE",
+   "count": 45
+  }
+ ],
+ "boNote": "The chutes cross over. Pieces from the left come out on the right. Bo's favourite trick."
+}

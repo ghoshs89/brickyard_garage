@@ -1,0 +1,40 @@
+{
+ "id": "b1-05",
+ "kind": "STORY",
+ "bay": 1,
+ "index": 5,
+ "title": "Color Sprayer",
+ "difficulty": "WARMUP",
+ "moves": 13,
+ "colors": 5,
+ "seed": 1185,
+ "baseCoins": 10,
+ "layout": [
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........"
+ ],
+ "goals": [
+  {
+   "type": "COLOR",
+   "color": "BLUE",
+   "count": 40
+  },
+  {
+   "type": "COLOR",
+   "color": "GREEN",
+   "count": 40
+  },
+  {
+   "type": "COLOR",
+   "color": "YELLOW",
+   "count": 40
+  }
+ ],
+ "tutorial": "Five in a row makes a Master Color Sprayer. Swap it with a piece to clear that whole colour!"
+}

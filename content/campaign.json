@@ -1,0 +1,187 @@
+{
+ "story": [
+  "b1-01",
+  "b1-02",
+  "b1-03",
+  "b1-04",
+  "b1-05",
+  "b1-06",
+  "b1-07",
+  "b1-08",
+  "b1-09",
+  "b1-10",
+  "b1-11",
+  "b1-12",
+  "b1-13",
+  "b1-14",
+  "b1-15",
+  "b2-01",
+  "b2-02",
+  "b2-03",
+  "b2-04",
+  "b2-05",
+  "b2-06",
+  "b2-07",
+  "b2-08",
+  "b2-09",
+  "b2-10",
+  "b2-11",
+  "b2-12",
+  "b2-13",
+  "b2-14",
+  "b2-15",
+  "b3-01",
+  "b3-02",
+  "b3-03",
+  "b3-04",
+  "b3-05",
+  "b3-06",
+  "b3-07",
+  "b3-08",
+  "b3-09",
+  "b3-10",
+  "b3-11",
+  "b3-12",
+  "b3-13",
+  "b3-14",
+  "b3-15"
+ ],
+ "levelsPerBay": 15,
+ "blueprints": [
+  {
+   "id": "bp-01",
+   "unlockAfter": "b1-03",
+   "rewardCoins": 15,
+   "rewardTool": "WRENCH"
+  },
+  {
+   "id": "bp-02",
+   "unlockAfter": "b1-06",
+   "rewardCoins": 15,
+   "rewardTool": "CLAW"
+  },
+  {
+   "id": "bp-03",
+   "unlockAfter": "b1-09",
+   "rewardCoins": 15,
+   "rewardTool": "BROOM"
+  },
+  {
+   "id": "bp-04",
+   "unlockAfter": "b1-12",
+   "rewardCoins": 20,
+   "rewardTool": "WRENCH",
+   "rewardPart": "comet-engine-2"
+  },
+  {
+   "id": "bp-05",
+   "unlockAfter": "b1-15",
+   "rewardCoins": 20,
+   "rewardTool": "CLAW"
+  },
+  {
+   "id": "bp-06",
+   "unlockAfter": "b2-04",
+   "rewardCoins": 20,
+   "rewardTool": "BROOM"
+  },
+  {
+   "id": "bp-07",
+   "unlockAfter": "b2-07",
+   "rewardCoins": 20,
+   "rewardTool": "WRENCH"
+  },
+  {
+   "id": "bp-08",
+   "unlockAfter": "b2-11",
+   "rewardCoins": 25,
+   "rewardTool": "CLAW",
+   "rewardPart": "trailblazer-engine-2"
+  },
+  {
+   "id": "bp-09",
+   "unlockAfter": "b2-15",
+   "rewardCoins": 25,
+   "rewardTool": "BROOM"
+  },
+  {
+   "id": "bp-10",
+   "unlockAfter": "b3-04",
+   "rewardCoins": 25,
+   "rewardTool": "WRENCH"
+  },
+  {
+   "id": "bp-11",
+   "unlockAfter": "b3-08",
+   "rewardCoins": 25,
+   "rewardTool": "CLAW"
+  },
+  {
+   "id": "bp-12",
+   "unlockAfter": "b3-12",
+   "rewardCoins": 30,
+   "rewardTool": "BROOM",
+   "rewardPart": "apex-engine-2"
+  }
+ ],
+ "gears": [
+  {
+   "id": "gear-01",
+   "unlockRepair": "b1-r1",
+   "rewardCoins": 15,
+   "rewardTool": "CLAW"
+  },
+  {
+   "id": "gear-02",
+   "unlockRepair": "b1-r3",
+   "rewardCoins": 15,
+   "rewardTool": "WRENCH"
+  },
+  {
+   "id": "gear-03",
+   "unlockRepair": "b1-r5",
+   "rewardCoins": 15,
+   "rewardTool": "BROOM",
+   "rewardPart": "comet-utility-2"
+  },
+  {
+   "id": "gear-04",
+   "unlockRepair": "b2-r1",
+   "rewardCoins": 15,
+   "rewardTool": "CLAW"
+  },
+  {
+   "id": "gear-05",
+   "unlockRepair": "b2-r3",
+   "rewardCoins": 15,
+   "rewardTool": "WRENCH"
+  },
+  {
+   "id": "gear-06",
+   "unlockRepair": "b2-r5",
+   "rewardCoins": 15,
+   "rewardTool": "BROOM",
+   "rewardPart": "trailblazer-utility-2"
+  },
+  {
+   "id": "gear-07",
+   "unlockRepair": "b3-r1",
+   "rewardCoins": 15,
+   "rewardTool": "CLAW"
+  },
+  {
+   "id": "gear-08",
+   "unlockRepair": "b3-r3",
+   "rewardCoins": 15,
+   "rewardTool": "WRENCH"
+  },
+  {
+   "id": "gear-09",
+   "unlockRepair": "b3-r5",
+   "rewardCoins": 15,
+   "rewardTool": "BROOM",
+   "rewardPart": "apex-utility-2"
+  }
+ ],
+ "trackDayUnlock": "b3-r5"
+}

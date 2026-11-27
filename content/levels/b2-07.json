@@ -1,0 +1,102 @@
+{
+ "id": "b2-07",
+ "kind": "STORY",
+ "bay": 2,
+ "index": 22,
+ "title": "Drop Chute",
+ "difficulty": "WARMUP",
+ "moves": 13,
+ "colors": 5,
+ "seed": 1814,
+ "baseCoins": 10,
+ "layout": [
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........"
+ ],
+ "floor": [
+  "..rrrr..",
+  "..rrrr..",
+  "........",
+  "........",
+  "rrrrrrrr",
+  "rrrrrrrr",
+  "rrrrrrrr",
+  "rrrrrrrr"
+ ],
+ "walls": [
+  {
+   "r": 3,
+   "c": 0,
+   "side": "below"
+  },
+  {
+   "r": 3,
+   "c": 1,
+   "side": "below"
+  },
+  {
+   "r": 3,
+   "c": 2,
+   "side": "below"
+  },
+  {
+   "r": 3,
+   "c": 3,
+   "side": "below"
+  },
+  {
+   "r": 3,
+   "c": 4,
+   "side": "below"
+  },
+  {
+   "r": 3,
+   "c": 5,
+   "side": "below"
+  },
+  {
+   "r": 3,
+   "c": 6,
+   "side": "below"
+  },
+  {
+   "r": 3,
+   "c": 7,
+   "side": "below"
+  }
+ ],
+ "portals": [
+  {
+   "from": [
+    3,
+    0
+   ],
+   "to": [
+    4,
+    3
+   ]
+  },
+  {
+   "from": [
+    3,
+    7
+   ],
+   "to": [
+    4,
+    4
+   ]
+  }
+ ],
+ "goals": [
+  {
+   "type": "RUST"
+  }
+ ],
+ "tutorial": "Drop Chutes send falling pieces from one section to another. Watch where they come out!"
+}

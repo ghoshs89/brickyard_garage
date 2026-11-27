@@ -1,0 +1,38 @@
+{
+ "id": "gear-04",
+ "index": 4,
+ "bay": 2,
+ "title": "Slow and Strong",
+ "prompt": "Pick a gear for the winch axle so it turns at HALF the motor's speed.",
+ "lesson": "A big gear driven by a small one turns slower but stronger. That's how a winch lifts an engine.",
+ "boNote": "Heavy jobs want slow, strong gears. Fast is not always better.",
+ "w": 18,
+ "h": 10,
+ "fixed": [
+  {
+   "x": 3,
+   "y": 5,
+   "teeth": 8,
+   "role": "motor",
+   "label": "Motor"
+  },
+  {
+   "x": 10,
+   "y": 5,
+   "teeth": 8,
+   "role": "axle",
+   "wantSpeed": 0.5,
+   "label": "Winch drum"
+  }
+ ],
+ "tray": [
+  1,
+  2,
+  1
+ ],
+ "maxPlace": 2,
+ "belts": [],
+ "blocked": [],
+ "rewardCoins": 15,
+ "witness": [[6, 5, 16], [10, 5, 16]]
+}

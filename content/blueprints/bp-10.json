@@ -1,0 +1,22 @@
+{
+  "id": "bp-10",
+  "kind": "BLUEPRINT",
+  "index": 10,
+  "title": "Polish Plan",
+  "moves": 3,
+  "exactMoves": 3,
+  "colors": 4,
+  "seed": 11,
+  "baseCoins": 0,
+  "boNote": "Watch the refill queue at the top. You know what's coming!",
+  "tutorial": "The visible queue lets you plan the cascade.",
+  "layout": ["RRBYGR", "YBRYBY", "RRYBBY", "GGYGRR", "BBRhYY", "BYRGYB"],
+  "floor": ["......", ".rr..r", "......", "rr....", "r.....", "r.r..."],
+  "overlay": ["......", "......", "......", "......", "......", "......"],
+  "refills": ["RRGRYBRRRBBRYY", "GGRRGBGBRYBBGB", "BBYBRGBYGGRRGY", "GBGGRRGGRGRBBG", "GGGYRGRRGGYGGY", "YBYGYRYRBYYRBB"],
+  "goals": [{
+      "type": "RUST"
+    }],
+  "witness": [[0, 8, 9, -1], [0, 2, 3, -1], [0, 12, 13, -1]],
+  "forgeStats": "first moves that win 6/16, noisy play wins 10%"
+}

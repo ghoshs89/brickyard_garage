@@ -1,0 +1,38 @@
+{
+ "id": "b1-09",
+ "kind": "STORY",
+ "bay": 1,
+ "index": 9,
+ "title": "Wheel Clamps",
+ "difficulty": "WARMUP",
+ "moves": 17,
+ "colors": 5,
+ "seed": 1333,
+ "baseCoins": 10,
+ "layout": [
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........"
+ ],
+ "overlay": [
+  "........",
+  "........",
+  "........",
+  ".2....2.",
+  "...22...",
+  "11111111",
+  "11111111",
+  "........"
+ ],
+ "goals": [
+  {
+   "type": "CLAMP"
+  }
+ ],
+ "tutorial": "A Wheel Clamp locks a piece in place. Match the clamped piece to take the clamp off."
+}

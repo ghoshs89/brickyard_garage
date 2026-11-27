@@ -1,0 +1,28 @@
+{
+ "id": "b1-06",
+ "kind": "STORY",
+ "bay": 1,
+ "index": 6,
+ "title": "Stud Crates",
+ "difficulty": "WARMUP",
+ "moves": 24,
+ "colors": 5,
+ "seed": 1222,
+ "baseCoins": 10,
+ "layout": [
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "11111111",
+  "22222222",
+  "22222222"
+ ],
+ "goals": [
+  {
+   "type": "CRATE"
+  }
+ ],
+ "tutorial": "Stud Crates pop when you match right next to them."
+}

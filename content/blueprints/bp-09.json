@@ -1,0 +1,22 @@
+{
+  "id": "bp-09",
+  "kind": "BLUEPRINT",
+  "index": 9,
+  "title": "Combo Crates",
+  "moves": 3,
+  "exactMoves": 3,
+  "colors": 4,
+  "seed": 5,
+  "baseCoins": 0,
+  "boNote": "Two power-ups side by side... what happens if they meet?",
+  "tutorial": "Swapping two power-ups makes a combo.",
+  "layout": ["BYBRRG", "RGRGRR", "YBG2YY", "BRY2Gv", "YGRYYR", "2RG2YG"],
+  "floor": ["......", "......", "......", "......", "......", "......"],
+  "overlay": ["......", "......", "......", "......", "......", "......"],
+  "refills": ["BGYRGGYRYYYYBB", "YBRYYYBRYRGGGG", "YRGRBBBYYBRYRR", "YBGYRGRGGBBGBB", "GBGRBRYYBGYYRR", "GGYGBGBRGRGRGB"],
+  "goals": [{
+      "type": "CRATE"
+    }],
+  "witness": [[0, 8, 9, -1], [0, 3, 9, -1], [0, 8, 14, -1]],
+  "forgeStats": "first moves that win 3/15, noisy play wins 4%"
+}

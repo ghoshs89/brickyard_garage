@@ -1,0 +1,74 @@
+{
+ "id": "b1-15",
+ "kind": "STORY",
+ "bay": 1,
+ "index": 15,
+ "title": "Pit Bay Finale",
+ "difficulty": "CHALLENGE",
+ "moves": 16,
+ "colors": 5,
+ "seed": 1555,
+ "baseCoins": 10,
+ "layout": [
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "........",
+  "..2222..",
+  "..2222.."
+ ],
+ "overlay": [
+  "........",
+  "........",
+  "........",
+  "1......1",
+  ".1....1.",
+  "........",
+  "........",
+  "........"
+ ],
+ "dispensers": [
+  [
+   0,
+   0
+  ],
+  [
+   0,
+   7
+  ]
+ ],
+ "exits": [
+  [
+   7,
+   0
+  ],
+  [
+   7,
+   1
+  ],
+  [
+   7,
+   6
+  ],
+  [
+   7,
+   7
+  ]
+ ],
+ "partsTotal": 2,
+ "goals": [
+  {
+   "type": "CRATE"
+  },
+  {
+   "type": "CLAMP"
+  },
+  {
+   "type": "PART",
+   "count": 2
+  }
+ ],
+ "boNote": "Last job in the pit bay! Parts come down the sides. Build a Nitro to clear a whole column for them."
+}

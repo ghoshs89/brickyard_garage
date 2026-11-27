@@ -1,0 +1,38 @@
+{
+ "id": "gear-02",
+ "index": 2,
+ "bay": 1,
+ "title": "Turn It Around",
+ "prompt": "Make the wheel turn the OPPOSITE way to the motor.",
+ "lesson": "Each gear in the chain flips the direction. Count the flips!",
+ "boNote": "A big gear can bridge the gap, but which way will the wheel turn then?",
+ "w": 18,
+ "h": 10,
+ "fixed": [
+  {
+   "x": 3,
+   "y": 5,
+   "teeth": 16,
+   "role": "motor",
+   "label": "Motor"
+  },
+  {
+   "x": 13,
+   "y": 5,
+   "teeth": 16,
+   "role": "output",
+   "wantDir": "CCW",
+   "label": "Paint fan"
+  }
+ ],
+ "tray": [
+  1,
+  1,
+  1
+ ],
+ "maxPlace": 2,
+ "belts": [],
+ "blocked": [],
+ "rewardCoins": 15,
+ "witness": [[6, 5, 8], [9, 5, 16]]
+}

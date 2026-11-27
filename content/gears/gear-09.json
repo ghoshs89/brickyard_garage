@@ -1,0 +1,46 @@
+{
+ "id": "gear-09",
+ "index": 9,
+ "bay": 3,
+ "title": "Grand Gearbox",
+ "prompt": "Make the show turntable spin THREE times as fast as the motor, clockwise.",
+ "lesson": "24 teeth driving 8 teeth is three times as fast. Idler gears in between flip direction but don't change speed.",
+ "boNote": "My last puzzle for you. Speed, direction and a tight squeeze, all at once.",
+ "w": 18,
+ "h": 12,
+ "fixed": [
+  {
+   "x": 3,
+   "y": 5,
+   "teeth": 24,
+   "role": "motor",
+   "label": "Motor"
+  },
+  {
+   "x": 13,
+   "y": 5,
+   "teeth": 8,
+   "role": "axle",
+   "wantDir": "CW",
+   "wantSpeed": 3,
+   "label": "Turntable"
+  }
+ ],
+ "tray": [
+  2,
+  3,
+  2
+ ],
+ "maxPlace": 4,
+ "belts": [],
+ "blocked": [
+  [
+   6,
+   0,
+   10,
+   4
+  ]
+ ],
+ "rewardCoins": 15,
+  "witness": [[6, 9, 16], [9, 9, 8], [13, 9, 24], [13, 5, 8]]
+}
