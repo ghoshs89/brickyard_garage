@@ -53,3 +53,8 @@ Assistant choices where the plan left a rule open, chosen to match the genre and
 - **Assistant choice:** the board is saved at level start and after every settled turn. A kill during an animation resumes from the last settled board, so the interrupted move is rolled back.
 - **Assistant choice:** `INSTALL.md` adds a "Path 0" (sideload in the parent profile, then Amazon Kids Share Content) before the plan's two paths. It takes five minutes to test, and nobody has verified whether Amazon Kids accepts sideloaded apps on this tablet; Gemini's claim that it never works is not backed by Amazon documentation.
 - Fixes found by emulator screenshots: wrapped text was invisible (a shared Paint was reset while measuring); piece icons were blurry (cache built at 8 px before layout); the back button overlapped the board; the turn banner covered the Blueprint refill queue; Track Day appeared twice after the story.
+
+## 2026-11-27: published to GitHub
+
+- **Parent decision:** the repo `ghoshs89/brickyard_garage` is public, so personal details were removed before pushing. Parent's words: "Scrub, then push". Options offered: scrub then push, push as-is, or make the repo private first.
+- Result: the player's name and assessment details were removed from the docs and code comments. The in-game player name now defaults to "Player"; parents set the real name in Parent Settings. Screenshots showing names were left out. Neither commit on GitHub contains the removed details (checked with `git grep`).
