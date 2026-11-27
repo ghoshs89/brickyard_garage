@@ -253,10 +253,12 @@ public final class Main {
         }
         line("  guaranteed story coins " + minCoins + ", one module for every vehicle and bay slot costs " + cheapest);
         if (minCoins < cheapest) err("guaranteed coins " + minCoins + " cannot buy one module for every slot (" + cheapest + ")");
-        // Track medals are reachable and ordered.
+        // Track medals are reachable and ordered — including on the very first Repair-1 test drive (CHASSIS + WHEELS).
         for (GarageCatalog.Track t : g.tracks.values()) {
             if (!(t.gold < t.silver && t.silver < t.bronze)) err(t.id + ": medal times must be gold < silver < bronze");
-            Map<String, String> starter = new LinkedHashMap<>(), best = new LinkedHashMap<>();
+            Map<String, String> earlyStarter = new LinkedHashMap<>(), starter = new LinkedHashMap<>(), best = new LinkedHashMap<>();
+            earlyStarter.put("CHASSIS", g.starter(t.vehicle, "CHASSIS").id);
+            earlyStarter.put("WHEELS", g.starter(t.vehicle, "WHEELS").id);
             for (String slot : GarageCatalog.SLOTS) {
                 starter.put(slot, g.starter(t.vehicle, slot).id);
                 GarageCatalog.Part top = null;
@@ -264,9 +266,12 @@ public final class Main {
                     if (top == null || part.speed + part.grip + part.boost > top.speed + top.grip + top.boost) top = part;
                 best.put(slot, top.id);
             }
+            BrickVehicleModel.Run e = new BrickVehicleModel(g, t.vehicle, earlyStarter).run(t);
             BrickVehicleModel.Run s = new BrickVehicleModel(g, t.vehicle, starter).run(t);
             BrickVehicleModel.Run b = new BrickVehicleModel(g, t.vehicle, best).run(t);
-            line(String.format("  %s: starter %.1fs (medal %d), best build %.1fs (medal %d)", t.id, s.totalSeconds, s.medal, b.totalSeconds, b.medal));
+            line(String.format("  %s: repair-1 %.1fs (medal %d), full-starter %.1fs (medal %d), best %.1fs (medal %d)",
+                    t.id, e.totalSeconds, e.medal, s.totalSeconds, s.medal, b.totalSeconds, b.medal));
+            if (e.medal < BrickVehicleModel.BRONZE) err(t.id + ": Repair-1 starter build cannot earn bronze");
             if (s.medal < BrickVehicleModel.BRONZE) err(t.id + ": the starter build cannot earn bronze");
             if (b.medal != BrickVehicleModel.GOLD) err(t.id + ": the best build cannot earn gold");
         }

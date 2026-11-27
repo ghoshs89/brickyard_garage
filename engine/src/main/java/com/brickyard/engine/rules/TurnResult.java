@@ -7,7 +7,7 @@ public final class TurnResult {
     public enum Status { INVALID, PLAYING, WON, LOST }
 
     /** Process-praise tags: they celebrate how he played, never what he "is". */
-    public enum Praise { SETUP_CRAFTED, COMBO_CHAIN, BIG_CLEAR, SMART_CLAW, MOVES_SAVED }
+    public enum Praise { SETUP_CRAFTED, COMBO_CHAIN, BIG_CLEAR, SMART_CLAW, MOVES_SAVED, TEAM_COMBO }
 
     public Status status = Status.PLAYING;
     public boolean moveSpent;

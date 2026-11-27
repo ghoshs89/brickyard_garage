@@ -20,7 +20,7 @@ public final class Audio {
     private boolean paused;
 
     private static final String[] SFX = {"snap_0", "snap_1", "snap_2", "snap_3", "snap_4", "swap", "bounce", "ratchet", "hiss",
-            "whirr", "thump", "nitro", "spray", "mesh", "rev", "coin", "star", "win", "retry", "crate", "oil", "part", "tap", "unclamp", "jam"};
+            "whirr", "thump", "nitro", "spray", "mesh", "rev", "coin", "star", "win", "retry", "crate", "oil", "part", "tap", "unclamp", "jam", "horn"};
 
     public Audio(Context ctx) {
         this.ctx = ctx;
@@ -28,11 +28,14 @@ public final class Audio {
                 .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION).build();
         pool = new SoundPool.Builder().setMaxStreams(8).setAudioAttributes(attrs).build();
         for (String s : SFX) {
+            AssetFileDescriptor fd = null;
             try {
-                AssetFileDescriptor fd = ctx.getAssets().openFd("audio/" + s + ".wav");
+                fd = ctx.getAssets().openFd("audio/" + s + ".wav");
                 ids.put(s, pool.load(fd, 1));
             } catch (Exception ignored) {
                 // a missing sound is never fatal
+            } finally {
+                if (fd != null) try { fd.close(); } catch (Exception ignored) {}
             }
         }
     }

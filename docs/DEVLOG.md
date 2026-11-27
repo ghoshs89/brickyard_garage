@@ -58,3 +58,26 @@ Assistant choices where the plan left a rule open, chosen to match the genre and
 
 - **Parent decision:** the repo `ghoshs89/brickyard_garage` is public, so personal details were removed before pushing. Parent's words: "Scrub, then push". Options offered: scrub then push, push as-is, or make the repo private first.
 - Result: the player's name and assessment details were removed from the docs and code comments. The in-game player name now defaults to "Player"; parents set the real name in Parent Settings. Screenshots showing names were left out. Neither commit on GitHub contains the removed details (checked with `git grep`).
+
+## 2026-11-27: `v1.1.0` review, bug fixes, and feature upgrade (`versionCode 2`)
+
+- **Parent decision:** review the `v1.0.0` build, fix identified engine/UI/performance bugs, add high-impact car & brick features, run an emulator visual smoke test, update docs/README, and publish the release APK. Parent's words: "go ahead" / "run an emulator visual smoke test" / "update documents, github readme and release the final apk".
+- **Engine fixes (`:engine`):**
+  - Sealed bulkhead walls in `TurnEngine.neighbors()` (blocking Oil Spills and adjacent damage through steel walls) and diagonal gravity slides (`wallRight` / `wallBelow` checks).
+  - Fixed Mechanic Tools: `TOOL_CLAW` triggers power-ups and combos when swapping them; `TOOL_WRENCH` and `TOOL_BROOM` reject empty/indestructible no-ops without consuming a charge; `PlayScreen.finishTurn()` now syncs spent tools back to `profile.tools` on `WON`/`LOST` turns (closing a tool-duplication bug).
+  - Track Baseplate spreading now triggers whenever a Nitro/Airbag/Sprayer crosses any baseplate tile, and `Sprayer + Power-Up` preserves baseplate spread.
+  - Added `BlueprintHint` (bounded on-device IDDFS solver) so Blueprint hints never return misleading 1-ply greedy moves, and snapshot-driven `refillPos` in `Step.Snapshot` so Blueprint refill queues stay in sync with animations.
+  - Persisted Shop Closing Time daily counters (`sessionDay`, `sessionMillis`, `sessionLevels`) in `Profile`, and stopped `RepairScreen` from incrementing the completed-levels counter.
+  - Re-calibrated track Bronze times (`9.0 s` / `8.8 s` / `8.5 s`) and updated `:tools` verification so even Repair-1 (`CHASSIS + WHEELS`) starter cars earn Bronze on their very first Test Drive.
+  - Re-tuned 5 Bay 3 story levels (`b3-01`, `b3-03`, `b3-07`, `b3-11`, `b3-13`) with `tools tune` after wall/track-spread fixes shifted their win rates above band.
+- **UI, art, audio & performance fixes (`:app`, `:tools`):**
+  - Fixed Juno's and Sprocket's missing necks in `CharacterArt`.
+  - Replaced per-frame `RadialGradient`/`LinearGradient` allocations in `Draw` with allocation-free studs and a bounded 64-entry `LinearGradient` cache.
+  - Closed all 25+ `AssetFileDescriptor` handles in `Audio`, wired bundled `crate` and `unclamp` SFX + matched-piece stud burst colors in `PlayScreen`, and added a synthesized two-tone `horn` SFX.
+  - Replaced red notification-style shop price bubbles with distinct gold coin price pills (`Button.priceBadge`), drew true 10-disk stacks + 100-coin gold blocks in `Ui2.ledger`, made locked Brick Bench slots tappable to show which repair unlocks them, fixed Test Track asphalt runoff past the finish line, and replaced the dead duplicate Track Day slot on `HubScreen` with `Levels` and `Manual`.
+- **New `v1.1.0` features:**
+  - Interactive Test Track: any unlocked car on all 3 tracks, translucent **Ghost Car** of the previous build racing side-by-side, **Turbo!** flame bursts, and **Honk!**.
+  - Brick Bench: **Cross-Fit Brick Mix** toggle (snap owned parts across vehicles), custom racing numbers (`1`–`99`), and brick stripe decals (`Racing`, `Checkered`, `Lightning`) rendered on Hub, Bench, and Track.
+  - Gear Fix-Its: physically phase-meshed gear teeth, live direction/speed badges, green mesh-peg highlights while dragging, tap-to-remove, Together Mode toggle, dialogue overlap fix, and a **Free-Build Gear Pegboard** sandbox with unlimited gears and Straight/Crossed Belt mode.
+  - Match-3 & Hub: **Blueprint 1-move Undo**, Together-mode **Team Combo** callouts, **Bay Level Picker** (`LevelSelectScreen`), and **Grandpa Bo's Shop Manual** (`ManualScreen`).
+- **Emulator visual smoke test (`firehd10_api30`):** verified `adb install -r` over saved progress and caught/fixed 5 layout details (full-screen gradient seam, Blueprint subtitle margin next to `?`, padlock vs. coin pill overlap on locked Bench cards, and Gear List 2-line caption spacing). Zero crashes; `verifyAllContent` and 50 JUnit tests pass.

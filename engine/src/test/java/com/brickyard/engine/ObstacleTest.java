@@ -205,4 +205,84 @@ class ObstacleTest {
         assertEquals(u1, use.after.uid[0]);
         assertEquals(20, b.movesLeft);
     }
+
+    @Test
+    void oilCannotSpreadThroughSteelBulkheadWalls() {
+        List<Object> walls = new ArrayList<>();
+        Map<String, Object> w1 = new LinkedHashMap<>();
+        w1.put("r", 6L); w1.put("c", 7L); w1.put("side", "below");
+        walls.add(w1);
+        Map<String, Object> w2 = new LinkedHashMap<>();
+        w2.put("r", 7L); w2.put("c", 6L); w2.put("side", "right");
+        walls.add(w2);
+        Board b = new LB(set(MatchAndPowerTest.fourInRow(), 7, 7, '~')).put("walls", walls).goal("OIL", null, -1).board();
+        TurnEngine.play(b, FOUR, true);
+        assertEquals(1, b.count(Kinds.OIL), "oil must stay boxed in by steel walls");
+    }
+
+    @Test
+    void diagonalGravityDoesNotSlideThroughVerticalWall() {
+        List<Object> walls = new ArrayList<>();
+        Map<String, Object> w1 = new LinkedHashMap<>();
+        w1.put("r", 1L); w1.put("c", 1L); w1.put("side", "right");
+        walls.add(w1);
+        Map<String, Object> w2 = new LinkedHashMap<>();
+        w2.put("r", 2L); w2.put("c", 1L); w2.put("side", "right");
+        walls.add(w2);
+        Map<String, Object> w3 = new LinkedHashMap<>();
+        w3.put("r", 1L); w3.put("c", 0L); w3.put("side", "right");
+        walls.add(w3);
+        Map<String, Object> w4 = new LinkedHashMap<>();
+        w4.put("r", 2L); w4.put("c", 0L); w4.put("side", "right");
+        walls.add(w4);
+        String[] L = set(MatchAndPowerTest.fourInRow(), 2, 1, '3');
+        Board b = new LB(L).put("walls", walls).board();
+        TurnEngine.play(b, FOUR, true);
+        assertEquals(Kinds.EMPTY, b.entity[idx(3, 1)], "sealed shaft under crate must not leak across vertical walls");
+    }
+
+    @Test
+    void wrenchRejectsIndestructiblePartWithoutSpendingCharge() {
+        Board b = new LB(set(base(), 2, 2, '*')).board();
+        b.tools[Kinds.TOOL_WRENCH] = 1;
+        TurnResult r = TurnEngine.play(b, Action.tool(Kinds.TOOL_WRENCH, idx(2, 2), -1), true);
+        assertEquals(TurnResult.Status.INVALID, r.status);
+        assertEquals(1, b.tools[Kinds.TOOL_WRENCH]);
+    }
+
+    @Test
+    void magneticClawCanTriggerPowerUpComboForFree() {
+        String[] L = set(set(base(), 3, 3, 'h'), 3, 4, 'v');
+        Board b = new LB(L).board();
+        b.tools[Kinds.TOOL_CLAW] = 1;
+        TurnResult r = TurnEngine.play(b, Action.tool(Kinds.TOOL_CLAW, idx(3, 3), idx(3, 4)), true);
+        assertNotEquals(TurnResult.Status.INVALID, r.status);
+        assertNotNull(first(r, Step.Type.COMBO_DETONATE));
+        assertEquals(20, b.movesLeft);
+        assertEquals(0, b.tools[Kinds.TOOL_CLAW]);
+    }
+
+    @Test
+    void nitroCrossingTrackBaseplateSpreadsTrackAcrossRow() {
+        String[] fl = new String[8];
+        for (int r = 0; r < 8; r++) fl[r] = "........";
+        fl[3] = ".......t";
+        Board b = new LB(set(base(), 3, 0, 'h')).floor(fl).goal("TRACK", null, -1).board();
+        TurnEngine.play(b, Action.tap(idx(3, 0)), true);
+        for (int c = 0; c < 8; c++) assertEquals(Kinds.FLOOR_TRACK, b.floor[idx(3, c)], "col " + c);
+    }
+
+    @Test
+    void blueprintHintFindsExactWinningMoveAndDetectsDeadEnd() {
+        Board b = new LB(MatchAndPowerTest.fourInRow()).put("kind", "BLUEPRINT").put("moves", 1L).put("exactMoves", 1L)
+                .goal("COLOR", "RED", 4).board();
+        Action hint = com.brickyard.engine.rules.BlueprintHint.solveNext(b);
+        assertNotNull(hint);
+        TurnResult r = TurnEngine.play(b.copy(), hint, false);
+        assertEquals(TurnResult.Status.WON, r.status);
+
+        Board impossible = new LB(base()).put("kind", "BLUEPRINT").put("moves", 1L).put("exactMoves", 1L)
+                .goal("COLOR", "RED", 99).board();
+        assertNull(com.brickyard.engine.rules.BlueprintHint.solveNext(impossible));
+    }
 }

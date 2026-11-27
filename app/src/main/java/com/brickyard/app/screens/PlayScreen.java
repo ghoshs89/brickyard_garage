@@ -16,6 +16,7 @@ import com.brickyard.engine.model.GoalSpec;
 import com.brickyard.engine.model.Kinds;
 import com.brickyard.engine.model.Level;
 import com.brickyard.engine.rules.Action;
+import com.brickyard.engine.rules.BlueprintHint;
 import com.brickyard.engine.rules.Hint;
 import com.brickyard.engine.rules.Moves;
 import com.brickyard.engine.rules.Step;
@@ -23,6 +24,7 @@ import com.brickyard.engine.rules.TurnEngine;
 import com.brickyard.engine.rules.TurnResult;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,9 +61,12 @@ public final class PlayScreen extends Screen {
     private final List<String> popupText = new ArrayList<>();
     private float bannerT = 3;
 
-    private final Button back, hintBtn, suggestBtn;
+    private final Button back, manualBtn, hintBtn, suggestBtn, undoBtn;
     private final Button[] toolBtns = new Button[3];
     private final double bestBefore;
+    private final List<Board> undoStack = new ArrayList<>();           // Blueprint 1-move undo history
+    private final Map<Integer, Integer> powerOwner = new HashMap<>();  // Together Mode: power-up uid -> player index
+    private boolean teamComboTriggered;
 
     public PlayScreen(Game g, Level L, Board board, boolean together, int turnPlayer) {
         super(g);
@@ -75,12 +80,17 @@ public final class PlayScreen extends Screen {
         bestBefore = b == null ? 0 : b;
         back = new Button("", 0xFFBDB6A8, new Runnable() { @Override public void run() { leave(); } });
         back.icon = new Button.Icon() { @Override public void draw(Canvas c, float x, float y, float s) { arrowLeft(c, x, y, s); } };
+        manualBtn = new Button("?", 0xFFE8C89A, new Runnable() { @Override public void run() { g.push(new ManualScreen(g)); } });
+        manualBtn.textSize = 36;
         hintBtn = new Button("Hint", 0xFFFFE066, new Runnable() { @Override public void run() { showHint(); } });
         hintBtn.icon = new Button.Icon() { @Override public void draw(Canvas c, float x, float y, float s) { bulb(c, x, y, s); } };
         suggestBtn = new Button("Suggest", 0xFF9FD3E8, new Runnable() { @Override public void run() { suggestMode = !suggestMode; suggestCell = -1; } });
+        undoBtn = new Button("Undo", 0xFFFF8A1F, new Runnable() { @Override public void run() { undoMove(); } });
         buttons.add(back);
+        buttons.add(manualBtn);
         buttons.add(hintBtn);
         buttons.add(suggestBtn);
+        buttons.add(undoBtn);
         for (int k = 0; k < 3; k++) {
             final int tool = k;
             toolBtns[k] = new Button("", 0xFFE8C89A, new Runnable() { @Override public void run() { toggleTool(tool); } });
@@ -108,9 +118,11 @@ public final class PlayScreen extends Screen {
         br.layout(Math.max(40, x0), y0, tile);
         g.pieces.setTilePixels(Math.round(tile * g.scale));
         float px = vw - 470;
-        back.at(px + 330, 40, 110, 84);
+        back.at(px + 336, 40, 104, 84);
+        manualBtn.at(px + 240, 40, 84, 84);
         hintBtn.at(px, vh - 130, 200, 96);
         suggestBtn.at(px + 220, vh - 130, 210, 96);
+        undoBtn.at(px, vh - 246, 200, 92);
         for (int k = 0; k < 3; k++) toolBtns[k].at(px + k * 145, vh - 250, 130, 100);
     }
 
@@ -123,6 +135,9 @@ public final class PlayScreen extends Screen {
         hintBtn.visible = g.progress.hintAvailable(L.id) && canHint && !busy();
         suggestBtn.visible = together && !busy();
         suggestBtn.label = suggestMode ? "Pointing..." : "Suggest";
+        undoBtn.visible = L.isBlueprint();
+        undoBtn.enabled = !undoStack.isEmpty() && !busy();
+        manualBtn.enabled = !busy();
         for (int k = 0; k < 3; k++) {
             toolBtns[k].visible = !L.isBlueprint() && board.tools[k] > 0;
             toolBtns[k].badge = String.valueOf(board.tools[k]);
@@ -183,14 +198,40 @@ public final class PlayScreen extends Screen {
             case TOOL_USE: stepDur = 0.28f; g.audio.play(s.kind == Kinds.TOOL_WRENCH ? "ratchet" : s.kind == Kinds.TOOL_CLAW ? "whirr" : "hiss"); break;
             default: stepDur = 0.2f;
         }
+        if (s.crateHit) g.audio.play("crate", 0.75f, 1f);
+        if (s.clampBroken) g.audio.play("unclamp", 0.75f, 1f);
     }
 
     private void play(Action a) {
         if (busy()) return;
         hint = null;
         selected = -1;
+        Board beforeCopy = L.isBlueprint() ? board.copy() : null;
+        teamComboTriggered = false;
+        if (together) {
+            int checkA = a.a, checkB = a.b;
+            if (checkA >= 0 && checkA < board.n && Moves.isPower(board, checkA)) {
+                Integer owner = powerOwner.get(board.uid[checkA]);
+                if (owner != null && owner != turnPlayer) teamComboTriggered = true;
+            }
+            if (checkB >= 0 && checkB < board.n && Moves.isPower(board, checkB)) {
+                Integer owner = powerOwner.get(board.uid[checkB]);
+                if (owner != null && owner != turnPlayer) teamComboTriggered = true;
+            }
+        }
         TurnResult r = TurnEngine.play(board, a, true);
         if (r.status == TurnResult.Status.INVALID) { g.audio.play("bounce"); return; }
+        if (beforeCopy != null && !r.bounced) undoStack.add(beforeCopy);
+        if (together) {
+            for (Step st : r.steps) {
+                if (st.type == Step.Type.POWERUP_SPAWN && st.a >= 0 && st.after != null) {
+                    powerOwner.put(st.after.uid[st.a], turnPlayer);
+                }
+            }
+            if (teamComboTriggered && !r.bounced && !r.praise.contains(TurnResult.Praise.TEAM_COMBO)) {
+                r.praise.add(TurnResult.Praise.TEAM_COMBO);
+            }
+        }
         pending = r;
         cascade = 0;
         prev = shown;
@@ -200,18 +241,51 @@ public final class PlayScreen extends Screen {
         else startStep();
     }
 
+    private void undoMove() {
+        if (busy() || undoStack.isEmpty()) return;
+        Board restore = undoStack.remove(undoStack.size() - 1);
+        System.arraycopy(restore.entity, 0, board.entity, 0, board.n);
+        System.arraycopy(restore.color, 0, board.color, 0, board.n);
+        System.arraycopy(restore.power, 0, board.power, 0, board.n);
+        System.arraycopy(restore.layers, 0, board.layers, 0, board.n);
+        System.arraycopy(restore.clamp, 0, board.clamp, 0, board.n);
+        System.arraycopy(restore.floor, 0, board.floor, 0, board.n);
+        System.arraycopy(restore.uid, 0, board.uid, 0, board.n);
+        System.arraycopy(restore.refillPos, 0, board.refillPos, 0, board.cols);
+        System.arraycopy(restore.collected, 0, board.collected, 0, board.collected.length);
+        board.movesLeft = restore.movesLeft;
+        board.movesUsed = restore.movesUsed;
+        board.rng.setState(restore.rng.state());
+        board.nextUid = restore.nextUid;
+        board.partsSpawned = restore.partsSpawned;
+        board.spawnsSinceLastPart = restore.spawnsSinceLastPart;
+        shown = new Step.Snapshot(board);
+        hint = null;
+        selected = -1;
+        if (together) { turnPlayer = 1 - turnPlayer; bannerT = 0; }
+        g.audio.play("swap", 0.8f, 0.85f);
+        saveInProgress();
+    }
+
     /** Called when every animation step of a turn has played. */
     private void finishTurn() {
         TurnResult r = pending;
         if (r == null) return;
         shown = new Step.Snapshot(board);
-        for (TurnResult.Praise p : r.praise) popup(Story.praise(p, r.movesLeftAtWin), vw - 470, 520 - popups.size() * 50);
+        for (TurnResult.Praise p : r.praise) {
+            String msg = (p == TurnResult.Praise.TEAM_COMBO && together)
+                    ? "Team Combo! " + (turnPlayer == 0 ? g.profile.partnerName : g.profile.playerName) + " set it up, " + (turnPlayer == 0 ? g.profile.playerName : g.profile.partnerName) + " fired it!"
+                    : Story.praise(p, r.movesLeftAtWin);
+            popup(msg, vw - 470, 520 - popups.size() * 50);
+        }
         if (r.status == TurnResult.Status.PLAYING) {
             pending = null;
             if (together && r.moveSpent) { turnPlayer = 1 - turnPlayer; bannerT = 0; suggestCell = -1; }
             saveInProgress();
         } else {
             g.profile.inProgress = null;
+            // Sync spent mechanic tools even on the final winning or losing move (fixes tool duplication).
+            if (!L.isBlueprint()) System.arraycopy(board.tools, 0, g.profile.tools, 0, 3);
             double progress = board.progress();
             double prevBest = g.progress.recordAttempt(L.id, r.status == TurnResult.Status.WON ? 1.0 : progress);
             g.save();
@@ -327,7 +401,16 @@ public final class PlayScreen extends Screen {
 
     private void showHint() {
         if (busy()) return;
-        hint = Hint.best(board);
+        if (L.isBlueprint()) {
+            hint = BlueprintHint.solveNext(board);
+            if (hint == null) {
+                g.audio.play("bounce");
+                popup("No win left from here — tap Undo!", vw - 470, 500);
+                return;
+            }
+        } else {
+            hint = Hint.best(board);
+        }
         hintT = 0;
         g.audio.play("star", 0.4f, 1.5f);
     }
@@ -362,7 +445,7 @@ public final class PlayScreen extends Screen {
             br.drawEntities(c, g.pieces, before, after, p, cur == null ? null : cur.type, time, selected);
         }
         if (cur != null) drawEffect(c, cur, p);
-        if (L.isBlueprint()) drawRefillQueue(c);
+        if (L.isBlueprint()) drawRefillQueue(c, before != null && p < 1 ? before : after);
         if (hint != null && hintT < 6) {
             br.ring(c, hint.a, 0xFFFFE066, time, false);
             if (hint.b >= 0) br.ring(c, hint.b, 0xFFFFE066, time, false);
@@ -431,11 +514,14 @@ public final class PlayScreen extends Screen {
                 }
                 break;
             case MATCH_POP:
-                for (int cell : s.cells)
+                for (int cell : s.cells) {
+                    int studCol = (prev != null && cell >= 0 && cell < prev.color.length && prev.color[cell] >= 0)
+                            ? Pal.PIECE[prev.color[cell]] : Pal.GOLD;
                     for (int k = 0; k < 3; k++) {
                         double a = k * 2.1 + cell;
-                        Draw.stud(c, br.cx(cell) + (float) Math.cos(a) * br.tile * 0.6f * e, br.cy(cell) + (float) Math.sin(a) * br.tile * 0.6f * e - br.tile * 0.3f * e, br.tile * 0.07f * (1 - p) + 0.5f, Pal.PIECE[(cell + k) % 6]);
+                        Draw.stud(c, br.cx(cell) + (float) Math.cos(a) * br.tile * 0.6f * e, br.cy(cell) + (float) Math.sin(a) * br.tile * 0.6f * e - br.tile * 0.3f * e, br.tile * 0.07f * (1 - p) + 0.5f, studCol);
                     }
+                }
                 break;
             case PART_COLLECT:
                 for (int cell : s.cells) Draw.star(c, br.cx(cell), br.cy(cell) - br.tile * e, br.tile * 0.4f * (1 + e), Pal.alpha(Pal.GOLD, alpha + 30), 3);
@@ -450,11 +536,11 @@ public final class PlayScreen extends Screen {
         }
     }
 
-    private void drawRefillQueue(Canvas c) {
-        // The visible queue is what makes Blueprints a planning puzzle: you can see what will fall next.
+    private void drawRefillQueue(Canvas c, Step.Snapshot snap) {
+        // The visible queue is what makes Blueprints a planning puzzle: driven by snapshot so it never jumps early.
         for (int col = 0; col < L.cols; col++) {
             String q = L.refills[col];
-            int pos = board.refillPos[col];
+            int pos = snap != null && col < snap.refillPos.length ? snap.refillPos[col] : board.refillPos[col];
             for (int k = 0; k < 3 && pos + k < q.length(); k++) {
                 int color = Kinds.COLOR_LETTERS.indexOf(q.charAt(pos + k));
                 if (color < 0) continue;
@@ -469,10 +555,12 @@ public final class PlayScreen extends Screen {
         float px = vw - 480, pw = 460;
         Ui.panel(c, px, 26, px + pw, 470, Pal.PANEL);
         float ts = 36;
-        while (Ui.width(L.title, ts) > 300 && ts > 20) ts -= 2;
+        while (Ui.width(L.title, ts) > 206 && ts > 18) ts -= 2;
         Ui.label(c, L.title, px + 24, 76, ts, Pal.INK, Paint.Align.LEFT);
-        String sub = L.isBlueprint() ? "Blueprint: win in exactly " + L.exactMoves : L.kind == Level.Kind.TRACK_DAY ? "Track Day" : "Bay " + L.bay + (L.difficulty == Level.Difficulty.CHALLENGE ? "  •  Builder Challenge" : "");
-        Ui.label(c, sub, px + 24, 112, 24, 0xFF8A6A40, Paint.Align.LEFT);
+        String sub = L.isBlueprint() ? "Blueprint · " + L.exactMoves + " moves" : L.kind == Level.Kind.TRACK_DAY ? "Track Day" : "Bay " + L.bay + (L.difficulty == Level.Difficulty.CHALLENGE ? " • Challenge" : "");
+        float ss = 24;
+        while (Ui.width(sub, ss) > 206 && ss > 16) ss -= 1;
+        Ui.label(c, sub, px + 24, 112, ss, 0xFF8A6A40, Paint.Align.LEFT);
         // moves
         Draw.rrect(c, px + 24, 130, px + 180, 250, 20, s.movesLeft <= 3 ? 0xFFFFD6CF : 0xFFFFFFFF, 4);
         Ui.center(c, String.valueOf(s.movesLeft), px + 102, 214, 72, s.movesLeft <= 3 ? Pal.RED_BAD : Pal.INK);

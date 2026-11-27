@@ -10,6 +10,7 @@ Scope is `docs/PLAN.md` (Gemini's plan, adopted as-is). Status is updated only f
 | 4 | Three bays with repairs, fixtures and story; three vehicles with 54 parts; Workshop Ledger; gear mini-game UI | Done 2026-11-27 |
 | 5 | 45 story levels (bot-tuned), 12 solver-proven Blueprints, 9 proven gear puzzles, endless Track Day | Done 2026-11-27 |
 | 6 | Synthesised audio, multi-resolution emulator QA, signed APK, `INSTALL.md` | Done on emulators; **physical Fire tablet test pending (parent)** |
+| 7 (`v1.1.0`) | Code review bug fixes (walls, tools, Blueprint solver hints, persistent Closing Time, Repair-1 Bronze, Fire 7 shader cache, audio FD leak, art/layout fixes) + Ghost Car & Turbo/Horn Test Track, Cross-Fit Brick Mix, racing numbers/stripes, Free-Build Gear Pegboard, Blueprint Undo, Level Select, Shop Manual, emulator visual QA | Done 2026-11-27 |
 
 ## Parent checkpoints
 

@@ -47,6 +47,7 @@ public final class BrickAudioSynth {
         write(out, "tap", snap(1567.98));
         write(out, "unclamp", ratchetShort());
         write(out, "jam", jam());
+        write(out, "horn", horn());
         write(out, "music_workshop", workshop());
         write(out, "music_focus", focus());
         write(out, "music_show", show());
@@ -113,6 +114,23 @@ public final class BrickAudioSynth {
     static double[] ratchetShort() {
         double[] b = buf(0.25);
         for (int k = 0; k < 3; k++) add(b, snap(1900 + 150 * k), (int) (k * 0.05 * SR), 0.55);
+        return b;
+    }
+
+    /** Cheerful two-tone classic car horn ("honk-honk!"). */
+    static double[] horn() {
+        double[] b = buf(0.45);
+        double[][] bursts = {{0.0, 0.14}, {0.19, 0.39}};
+        for (double[] w : bursts) {
+            for (int i = (int) (w[0] * SR); i < (int) (w[1] * SR) && i < b.length; i++) {
+                double t = i / (double) SR - w[0];
+                double dur = w[1] - w[0];
+                double e = Math.min(1, t / 0.012) * Math.min(1, (dur - t) / 0.02);
+                double s = 0.45 * (sine(349.23, t) + 0.45 * sine(698.46, t) + 0.25 * sine(1047.7, t))
+                        + 0.45 * (sine(440.0, t) + 0.45 * sine(880.0, t) + 0.25 * sine(1320.0, t));
+                b[i] += 0.35 * s * e;
+            }
+        }
         return b;
     }
 

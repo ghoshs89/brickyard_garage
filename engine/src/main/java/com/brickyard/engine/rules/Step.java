@@ -17,6 +17,8 @@ public final class Step {
     public final int[] cells;  // cells involved (cleared, spawned, collected...)
     public final int a, b;     // e.g. swap endpoints, buggy from/to
     public final int kind;     // power-up kind for POWERUP_* steps, tool index for TOOL_USE
+    public boolean crateHit;
+    public boolean clampBroken;
     public Snapshot after;
 
     public Step(Type type, int[] cells, int a, int b, int kind) {
@@ -32,6 +34,7 @@ public final class Step {
         public final byte[] entity, color, power, layers, clamp, floor;
         public final int[] uid;
         public final int[] remaining;
+        public final int[] refillPos;
         public final int movesLeft;
 
         public Snapshot(Board bd) {
@@ -44,6 +47,7 @@ public final class Step {
             uid = bd.uid.clone();
             remaining = new int[bd.level.goals.size()];
             for (int g = 0; g < remaining.length; g++) remaining[g] = Math.max(0, bd.remaining(g));
+            refillPos = bd.refillPos.clone();
             movesLeft = bd.movesLeft;
         }
     }

@@ -22,7 +22,7 @@ public final class PuzzleListScreen extends Screen {
     private final boolean blueprints;
     private final List<Button> cards = new ArrayList<>();
     private final List<Campaign.Unlockable> items;
-    private final Button back;
+    private final Button back, sandboxBtn;
 
     public PuzzleListScreen(final Game g, final boolean blueprints) {
         super(g);
@@ -41,7 +41,13 @@ public final class PuzzleListScreen extends Screen {
             buttons.add(b);
         }
         back = new Button("Garage", 0xFFBDB6A8, new Runnable() { @Override public void run() { g.pop(); } });
+        sandboxBtn = new Button("Free-Build Pegboard", 0xFFFF8A1F, new Runnable() {
+            @Override public void run() { g.push(GearScreen.sandbox(g)); }
+        });
+        sandboxBtn.textSize = 24;
+        sandboxBtn.visible = !blueprints;
         buttons.add(back);
+        buttons.add(sandboxBtn);
     }
 
     @Override
@@ -53,10 +59,11 @@ public final class PuzzleListScreen extends Screen {
     public void layout(float vw, float vh) {
         super.layout(vw, vh);
         int cols = blueprints ? 4 : 3;
-        float cw = Math.min(300, (vw - 120) / cols - 20), ch = 120;
+        float cw = Math.min(300, (vw - 120) / cols - 20), ch = 108;
         float x0 = (vw - cols * (cw + 24)) / 2;
-        for (int k = 0; k < cards.size(); k++) cards.get(k).at(x0 + (k % cols) * (cw + 24), 160 + (k / cols) * (ch + 56), cw, ch);
+        for (int k = 0; k < cards.size(); k++) cards.get(k).at(x0 + (k % cols) * (cw + 24), 154 + (k / cols) * (ch + 74), cw, ch);
         back.at(24, 20, 180, 80);
+        sandboxBtn.at(vw - 320, 20, 296, 80);
     }
 
     @Override

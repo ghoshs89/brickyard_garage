@@ -24,6 +24,7 @@ public final class TurnEngine {
     private TurnResult res;
     private final ArrayDeque<int[]> fireQ = new ArrayDeque<>(); // {cell, power, color, carried, track}
     private int oilCleared;
+    private boolean stepCrateHit, stepClampBroken;
     private boolean[] reserved;
 
     public TurnEngine(Board board, boolean record) {
@@ -45,6 +46,8 @@ public final class TurnEngine {
     public TurnResult apply(Action a) {
         res = new TurnResult();
         oilCleared = 0;
+        stepCrateHit = false;
+        stepClampBroken = false;
         reserved = new boolean[b.n];
         if (isOver(b)) { res.status = TurnResult.Status.INVALID; return res; }
 
@@ -99,19 +102,41 @@ public final class TurnEngine {
                 }
                 if (a.tool == Kinds.TOOL_CLAW) {
                     if (!Moves.canExchange(b, a.a, a.b)) { res.status = TurnResult.Status.INVALID; return res; }
-                    Moves.exchange(b, a.a, a.b);
-                    add(new Step(Step.Type.TOOL_USE, new int[]{a.a, a.b}, a.a, a.b, a.tool));
-                    swapCells = new int[]{a.b, a.a};
+                    boolean pf = Moves.isPower(b, a.a), pt = Moves.isPower(b, a.b);
+                    if (pf && pt) {
+                        add(new Step(Step.Type.TOOL_USE, new int[]{a.a, a.b}, a.a, a.b, a.tool));
+                        combo(a.a, a.b);
+                    } else if (pf || pt) {
+                        int pc = pf ? a.a : a.b, other = pf ? a.b : a.a;
+                        int col = b.color[other];
+                        byte pkind = b.power[pc];
+                        Moves.exchange(b, a.a, a.b);
+                        add(new Step(Step.Type.TOOL_USE, new int[]{a.a, a.b}, a.a, a.b, a.tool));
+                        int at = pf ? a.b : a.a;
+                        if (pkind == Kinds.SPRAYER) enqueueFireColored(at, col);
+                        else enqueueFire(at);
+                    } else {
+                        Moves.exchange(b, a.a, a.b);
+                        add(new Step(Step.Type.TOOL_USE, new int[]{a.a, a.b}, a.a, a.b, a.tool));
+                        swapCells = new int[]{a.b, a.a};
+                    }
                     claw = true;
                 } else if (a.tool == Kinds.TOOL_WRENCH) {
-                    add(new Step(Step.Type.TOOL_USE, new int[]{a.a}, a.a, -1, a.tool));
+                    if (!isHittable(a.a)) { res.status = TurnResult.Status.INVALID; return res; }
                     hit(a.a);
+                    add(new Step(Step.Type.TOOL_USE, new int[]{a.a}, a.a, -1, a.tool));
                 } else {
                     int r = a.a / b.cols;
                     int[] row = new int[b.cols];
-                    for (int c = 0; c < b.cols; c++) row[c] = r * b.cols + c;
-                    add(new Step(Step.Type.TOOL_USE, row, a.a, -1, a.tool));
+                    boolean anyHit = false;
+                    for (int c = 0; c < b.cols; c++) {
+                        int cell = r * b.cols + c;
+                        row[c] = cell;
+                        if (L.active[cell] && isHittable(cell)) anyHit = true;
+                    }
+                    if (!anyHit) { res.status = TurnResult.Status.INVALID; return res; }
                     for (int c : row) hit(c);
+                    add(new Step(Step.Type.TOOL_USE, row, a.a, -1, a.tool));
                 }
                 b.tools[a.tool]--;
                 spent = false;
@@ -219,6 +244,7 @@ public final class TurnEngine {
                 removePiece(i);
                 return;
             case Kinds.CRATE:
+                stepCrateHit = true;
                 b.layers[i]--;
                 if (b.layers[i] <= 0) {
                     b.entity[i] = Kinds.EMPTY;
@@ -244,11 +270,16 @@ public final class TurnEngine {
     }
 
     private void unclamp(int i) {
+        stepClampBroken = true;
         b.clamp[i]--;
         if (b.clamp[i] == 0) {
             countGoal(GoalSpec.Type.CLAMP);
             res.obstaclesCleared++;
         }
+    }
+
+    private boolean isHittable(int i) {
+        return b.entity[i] == Kinds.PIECE || b.entity[i] == Kinds.CRATE || b.entity[i] == Kinds.OIL || b.floor[i] == Kinds.FLOOR_RUST;
     }
 
     private void removePiece(int i) {
@@ -286,7 +317,11 @@ public final class TurnEngine {
     // =================================================================== power-ups
 
     private void enqueueFire(int i) {
-        fireQ.add(new int[]{i, b.power[i], -1, Kinds.NONE, b.floor[i] == Kinds.FLOOR_TRACK ? 1 : 0});
+        enqueueFireTrack(i, b.floor[i] == Kinds.FLOOR_TRACK);
+    }
+
+    private void enqueueFireTrack(int i, boolean track) {
+        fireQ.add(new int[]{i, b.power[i], -1, Kinds.NONE, (track || b.floor[i] == Kinds.FLOOR_TRACK) ? 1 : 0});
         takeOut(i);
     }
 
@@ -343,8 +378,9 @@ public final class TurnEngine {
             default:
                 return;
         }
-        add(new Step(Step.Type.POWERUP_FIRE, toArray(cells), cell, -1, type));
+        if (!track) for (int t : cells) if (L.active[t] && b.floor[t] == Kinds.FLOOR_TRACK) { track = true; break; }
         for (int t : cells) { hit(t); if (track) paintTrack(t); }
+        add(new Step(Step.Type.POWERUP_FIRE, toArray(cells), cell, -1, type));
     }
 
     private void buggyFly(int from, byte carried, boolean track) {
@@ -442,7 +478,7 @@ public final class TurnEngine {
                     converted.add(i);
                 }
             add(new Step(Step.Type.COMBO_DETONATE, toArray(converted), from, to, 50 + other));
-            for (int i : converted) enqueueFire(i);
+            for (int i : converted) enqueueFireTrack(i, track);
             return;
         }
         if (pf == Kinds.AIRBAG && pt == Kinds.AIRBAG) {
@@ -512,8 +548,9 @@ public final class TurnEngine {
                     for (int dc = -1; dc <= 1 && !slid; dc += 2) {
                         int sc = c + dc;
                         if (sc < 0 || sc >= b.cols) continue;
-                        int s = (r - 1) * b.cols + sc, below = r * b.cols + sc;
-                        if (!b.movable(s) || L.wallBelow[s]) continue;
+                        int s = (r - 1) * b.cols + sc, below = r * b.cols + sc, aboveI = (r - 1) * b.cols + c;
+                        if (!b.movable(s) || L.wallBelow[s] || L.wallBelow[aboveI]) continue;
+                        if (Moves.wallBetween(b, s, aboveI) || Moves.wallBetween(b, below, i)) continue;
                         if (L.active[below] && b.entity[below] == Kinds.EMPTY) continue; // s is still falling
                         moveEntity(s, i);
                         slid = true;
@@ -687,10 +724,10 @@ public final class TurnEngine {
     private List<Integer> neighbors(int i) {
         List<Integer> out = new ArrayList<>(4);
         int r = i / b.cols, c = i % b.cols;
-        if (r > 0 && L.active[i - b.cols]) out.add(i - b.cols);
-        if (r + 1 < b.rows && L.active[i + b.cols]) out.add(i + b.cols);
-        if (c > 0 && L.active[i - 1]) out.add(i - 1);
-        if (c + 1 < b.cols && L.active[i + 1]) out.add(i + 1);
+        if (r > 0 && L.active[i - b.cols] && !Moves.wallBetween(b, i, i - b.cols)) out.add(i - b.cols);
+        if (r + 1 < b.rows && L.active[i + b.cols] && !Moves.wallBetween(b, i, i + b.cols)) out.add(i + b.cols);
+        if (c > 0 && L.active[i - 1] && !Moves.wallBetween(b, i, i - 1)) out.add(i - 1);
+        if (c + 1 < b.cols && L.active[i + 1] && !Moves.wallBetween(b, i, i + 1)) out.add(i + 1);
         return out;
     }
 
@@ -723,6 +760,10 @@ public final class TurnEngine {
     }
 
     private void add(Step s) {
+        s.crateHit = stepCrateHit;
+        s.clampBroken = stepClampBroken;
+        stepCrateHit = false;
+        stepClampBroken = false;
         if (!record) return;
         s.after = new Step.Snapshot(b);
         res.steps.add(s);

@@ -229,14 +229,20 @@ public final class Progress {
         return true;
     }
 
-    /** Snapping an owned part onto a vehicle is free. */
+    /** Snapping an owned part onto a vehicle is free. In Cross-Fit Brick Mix mode, parts fit any car. */
     public boolean equip(String vehicle, String partId) {
         GarageCatalog.Part part = catalog.parts.get(partId);
         if (part == null || !p.ownedParts.contains(partId)) return false;
-        if (!part.vehicle.equals("any") && !part.vehicle.equals(vehicle)) return false;
+        if (!p.mixParts && !part.vehicle.equals("any") && !part.vehicle.equals(vehicle)) return false;
         if (!slotUnlocked(vehicle, part.slot)) return false;
         equippedFor(vehicle).put(part.slot, partId);
         return true;
+    }
+
+    /** Records a Ghost Car build for this vehicle + track so the next run races against it. */
+    public void saveGhostBuild(String vehicle, String track) {
+        String key = vehicle + "|" + track;
+        p.ghostBuilds.put(key, new LinkedHashMap<String, String>(equippedFor(vehicle)));
     }
 
     public Map<String, String> equippedFor(String vehicle) {

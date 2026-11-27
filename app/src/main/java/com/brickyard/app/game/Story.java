@@ -73,6 +73,7 @@ public final class Story {
             case BIG_CLEAR: return "Cleared lots of obstacles in one move!";
             case SMART_CLAW: return "Smart Claw move: you made a Sprayer!";
             case MOVES_SAVED: return "Saved " + movesLeft + " moves!";
+            case TEAM_COMBO: return "Team Combo! Built and fired together!";
             default: return "";
         }
     }

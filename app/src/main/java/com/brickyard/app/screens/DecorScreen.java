@@ -104,7 +104,8 @@ public final class DecorScreen extends Screen implements GameView.Overlay {
             b.enabled = unlocked;
             b.visible = pendingD == null;
             b.color = chosen ? 0xFFB9F0B0 : pendingD == d ? 0xFFFFE066 : 0xFFFFFFFF;
-            b.badge = !unlocked ? null : owned ? null : String.valueOf(d.price);
+            b.priceBadge = (!unlocked || owned) ? null : String.valueOf(d.price);
+            b.badge = null;
         }
         buy.visible = cancel.visible = pendingD != null;
         buy.enabled = pendingD != null && g.profile.coins >= pendingD.price;
@@ -114,8 +115,8 @@ public final class DecorScreen extends Screen implements GameView.Overlay {
     @Override
     public void draw(Canvas c) {
         if (pendingD != null) {
-            Ui2.ledger(c, g.profile.coins, pendingD.price, vw / 2 - 420, vh - 430, 840);
-            Ui.center(c, "Trying: " + pendingD.name + " (" + pendingD.price + " coins)", vw / 2, vh - 450, 32, 0xFFFFFFFF);
+            Ui2.ledger(c, "Trying: " + pendingD.name + " (" + pendingD.price + " coins)", pendingF != null ? pendingF.name : "",
+                    g.profile.coins, pendingD.price, vw / 2 - 440, vh - 460, 880);
             drawButtons(c);
             return;
         }

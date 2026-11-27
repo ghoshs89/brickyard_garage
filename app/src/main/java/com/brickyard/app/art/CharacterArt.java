@@ -90,6 +90,8 @@ public final class CharacterArt {
         Draw.rrect(c, 52, 190, 86, 260, 8, vest, 4);
         Draw.rrect(c, 114, 190, 148, 260, 8, vest, 4);
         for (int k = 0; k < 4; k++) Draw.brick(c, 50 + k * 26, 236, 72 + k * 26, 252, Pal.PIECE[k], 1, 2);
+        // neck connecting shoulders to head
+        Draw.rrect(c, 84, 152, 116, 188, 10, Pal.darker(skin, 0.92f), 4);
         // ponytail
         Draw.circle(c, 150, 92, 22, hair, 4);
         Draw.circle(c, 100, 110, 50, skin, 4);
@@ -109,6 +111,8 @@ public final class CharacterArt {
         Path body = new Path();
         body.moveTo(50, 260); body.cubicTo(44, 200, 70, 184, 100, 184); body.cubicTo(130, 184, 156, 200, 150, 260); body.close();
         Draw.path(c, body, fur, 4);
+        // neck tuft behind bandana
+        Draw.rrect(c, 82, 162, 118, 194, 10, fur, 3);
         // red bandana
         Path band = new Path();
         band.moveTo(62, 186); band.lineTo(138, 186); band.lineTo(100, 222); band.close();

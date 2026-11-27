@@ -33,6 +33,10 @@ public final class Profile {
     public final Set<String> seen = new LinkedHashSet<>(); // tutorials and story scenes already shown
     public int trackDayRound;      // endless mode: next generated round
     public int trackDayBest;
+    public final Map<String, Integer> carNumbers = new LinkedHashMap<>();  // vehicle -> 0..99 racing number
+    public final Map<String, Integer> carStripes = new LinkedHashMap<>();  // vehicle -> 0 none, 1 racing, 2 checkered, 3 lightning
+    public final Map<String, Map<String, String>> ghostBuilds = new LinkedHashMap<>(); // "vehicle|track" -> previous equipped map
+    public boolean mixParts;       // Cross-Fit Brick Mix: allow snapping owned parts across cars
 
     // settings
     public boolean sound = true, music = true;
@@ -41,6 +45,9 @@ public final class Profile {
     public String pin = "";        // parent PIN, set on first visit to Parent Settings
     public String closingTime = "OFF"; // OFF, MIN20, MIN30, LEVELS5
     public long closedUntilDay = -1;   // "Shop Closing Time": closed until this local day number
+    public long sessionDay = -1;       // persisted daily session tracker for Shop Closing Time
+    public long sessionMillis;
+    public int sessionLevels;
     public boolean debugUnlock;        // parent testing: every level and puzzle open
 
     // in-progress board (saved after every settled move)
@@ -70,6 +77,12 @@ public final class Profile {
         m.put("seen", new ArrayList<Object>(seen));
         m.put("trackDayRound", (long) trackDayRound);
         m.put("trackDayBest", (long) trackDayBest);
+        m.put("carNumbers", new LinkedHashMap<String, Object>(carNumbers));
+        m.put("carStripes", new LinkedHashMap<String, Object>(carStripes));
+        Map<String, Object> gb = new LinkedHashMap<>();
+        for (Map.Entry<String, Map<String, String>> e : ghostBuilds.entrySet()) gb.put(e.getKey(), new LinkedHashMap<String, Object>(e.getValue()));
+        m.put("ghostBuilds", gb);
+        m.put("mixParts", mixParts);
         m.put("sound", sound);
         m.put("music", music);
         m.put("playerName", playerName);
@@ -77,6 +90,9 @@ public final class Profile {
         m.put("pin", pin);
         m.put("closingTime", closingTime);
         m.put("closedUntilDay", closedUntilDay);
+        m.put("sessionDay", sessionDay);
+        m.put("sessionMillis", sessionMillis);
+        m.put("sessionLevels", (long) sessionLevels);
         m.put("debugUnlock", debugUnlock);
         m.put("inProgress", inProgress);
         return m;
@@ -107,6 +123,14 @@ public final class Profile {
         for (Object o : Json.getList(m, "seen")) p.seen.add((String) o);
         p.trackDayRound = Json.getInt(m, "trackDayRound", 0);
         p.trackDayBest = Json.getInt(m, "trackDayBest", 0);
+        for (Map.Entry<String, Object> e : Json.getMap(m, "carNumbers").entrySet()) p.carNumbers.put(e.getKey(), ((Number) e.getValue()).intValue());
+        for (Map.Entry<String, Object> e : Json.getMap(m, "carStripes").entrySet()) p.carStripes.put(e.getKey(), ((Number) e.getValue()).intValue());
+        for (Map.Entry<String, Object> e : Json.getMap(m, "ghostBuilds").entrySet()) {
+            Map<String, String> slots = new LinkedHashMap<>();
+            for (Map.Entry<String, Object> s : ((Map<String, Object>) e.getValue()).entrySet()) slots.put(s.getKey(), (String) s.getValue());
+            p.ghostBuilds.put(e.getKey(), slots);
+        }
+        p.mixParts = Json.getBool(m, "mixParts", false);
         p.sound = Json.getBool(m, "sound", true);
         p.music = Json.getBool(m, "music", true);
         p.playerName = Json.getString(m, "playerName", "Player");
@@ -114,6 +138,9 @@ public final class Profile {
         p.pin = Json.getString(m, "pin", "");
         p.closingTime = Json.getString(m, "closingTime", "OFF");
         p.closedUntilDay = Json.getLong(m, "closedUntilDay", -1);
+        p.sessionDay = Json.getLong(m, "sessionDay", -1);
+        p.sessionMillis = Json.getLong(m, "sessionMillis", 0);
+        p.sessionLevels = Json.getInt(m, "sessionLevels", 0);
         p.debugUnlock = Json.getBool(m, "debugUnlock", false);
         Object ip = m.get("inProgress");
         p.inProgress = ip instanceof Map ? (Map<String, Object>) ip : null;

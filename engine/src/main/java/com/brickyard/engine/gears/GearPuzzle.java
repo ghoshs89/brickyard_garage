@@ -18,7 +18,7 @@ public final class GearPuzzle {
         public final int wantDir;    // outputs: CW/CCW, or 0 for either
         public final double wantSpeed; // outputs: required speed, or 0 for any
         public final String label;
-        Fixed(GearTrainSimulator.Gear g, String role, int wantDir, double wantSpeed, String label) {
+        public Fixed(GearTrainSimulator.Gear g, String role, int wantDir, double wantSpeed, String label) {
             this.gear = g; this.role = role; this.wantDir = wantDir; this.wantSpeed = wantSpeed; this.label = label;
         }
     }

@@ -51,9 +51,24 @@ public final class Game {
     public float speed = 1;
     public Autopilot autopilot;
 
-    // Shop Closing Time (parent setting)
-    private long sessionStart = System.currentTimeMillis();
-    private int levelsThisSession;
+    // Shop Closing Time (persisted in Profile so app restarts cannot bypass daily limits)
+    private long resumeAt = System.currentTimeMillis();
+
+    private void syncSessionDay() {
+        long d = today();
+        if (profile.sessionDay != d) {
+            profile.sessionDay = d;
+            profile.sessionMillis = 0;
+            profile.sessionLevels = 0;
+        }
+    }
+
+    private void flushSessionTime() {
+        syncSessionDay();
+        long now = System.currentTimeMillis();
+        if (now > resumeAt) profile.sessionMillis += Math.min(now - resumeAt, 3600_000L);
+        resumeAt = now;
+    }
 
     public Game(Activity activity) throws Exception {
         this.activity = activity;
@@ -181,26 +196,35 @@ public final class Game {
         return profile.closedUntilDay >= 0 && today() <= profile.closedUntilDay;
     }
 
-    /** Called after a level or a repair finishes: never cuts him off mid-level. */
+    /** Called after a level (countLevel=true) or a repair (countLevel=false): never cuts off mid-level. */
     public boolean checkClosingTime() {
-        levelsThisSession++;
+        return checkClosingTime(true);
+    }
+
+    public boolean checkClosingTime(boolean countLevel) {
+        flushSessionTime();
+        if (countLevel) profile.sessionLevels++;
         String mode = profile.closingTime;
-        long mins = (System.currentTimeMillis() - sessionStart) / 60000;
+        long mins = profile.sessionMillis / 60000L;
         boolean close = (mode.equals("MIN20") && mins >= 20) || (mode.equals("MIN30") && mins >= 30)
-                || (mode.equals("LEVELS5") && levelsThisSession >= 5);
+                || (mode.equals("LEVELS5") && profile.sessionLevels >= 5);
         if (close) {
             profile.closedUntilDay = today();
             save();
             home();
             push(new ClosingScreen(this));
+        } else {
+            save();
         }
         return close;
     }
 
     public void reopenShop() {
         profile.closedUntilDay = -1;
-        sessionStart = System.currentTimeMillis();
-        levelsThisSession = 0;
+        profile.sessionDay = today();
+        profile.sessionMillis = 0;
+        profile.sessionLevels = 0;
+        resumeAt = System.currentTimeMillis();
         save();
     }
 
@@ -261,11 +285,14 @@ public final class Game {
     }
 
     public void onPause() {
+        flushSessionTime();
         save();
         audio.pause();
     }
 
     public void onResume() {
+        syncSessionDay();
+        resumeAt = System.currentTimeMillis();
         audio.resume();
     }
 }

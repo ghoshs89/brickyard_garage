@@ -24,7 +24,7 @@ public final class HubScreen extends Screen {
     public int bay = 1;
     /** DecorScreen previews a design here before it is bought ("try it in the room"). */
     public final Map<String, Integer> preview = new HashMap<>();
-    private final Button play, repairs, decorate, bench, blueprints, gears, trackDay, parents;
+    private final Button play, repairs, decorate, bench, blueprints, gears, levelsBtn, manualBtn, parents;
     private final Button[] bayTabs = new Button[3];
     private float sceneX, sceneY, sceneS;
     private boolean userPickedBay;
@@ -39,12 +39,15 @@ public final class HubScreen extends Screen {
         bench = new Button("Brick Bench", 0xFFFF8A1F, new Runnable() { @Override public void run() { g.push(new BenchScreen(g, vehicleFor(bay))); } });
         blueprints = new Button("Blueprints", 0xFF5B8FD9, new Runnable() { @Override public void run() { g.push(new PuzzleListScreen(g, true)); } });
         gears = new Button("Gear Fix-Its", 0xFFB58CFF, new Runnable() { @Override public void run() { g.push(new PuzzleListScreen(g, false)); } });
-        trackDay = new Button("Track Day", 0xFFE03B2E, new Runnable() {
-            @Override public void run() { g.push(new BriefingScreen(g, g.level("trackday-" + g.profile.trackDayRound))); }
+        levelsBtn = new Button("Levels", 0xFF6B8E6E, new Runnable() {
+            @Override public void run() { g.push(new LevelSelectScreen(g, bay)); }
+        });
+        manualBtn = new Button("Manual", 0xFFE8C89A, new Runnable() {
+            @Override public void run() { g.push(new ManualScreen(g)); }
         });
         parents = new Button("Parents", 0xFFBDB6A8, new Runnable() { @Override public void run() { g.push(new SettingsScreen(g)); } });
         parents.textSize = 24;
-        for (Button b : new Button[]{play, repairs, decorate, bench, blueprints, gears, trackDay, parents}) buttons.add(b);
+        for (Button b : new Button[]{play, repairs, decorate, bench, blueprints, gears, levelsBtn, manualBtn, parents}) buttons.add(b);
         for (int k = 0; k < 3; k++) {
             final int n = k + 1;
             bayTabs[k] = new Button("Bay " + n, 0xFFE8C89A, new Runnable() { @Override public void run() { bay = n; userPickedBay = true; bayIntroIfNew(); } });
@@ -115,7 +118,8 @@ public final class HubScreen extends Screen {
         bench.at(colX + colW / 2 + 8, 368, colW / 2 - 8, 92);
         blueprints.at(colX, 474, colW / 2 - 8, 92);
         gears.at(colX + colW / 2 + 8, 474, colW / 2 - 8, 92);
-        trackDay.at(colX, 580, colW, 92);
+        levelsBtn.at(colX, 580, colW / 2 - 8, 86);
+        manualBtn.at(colX + colW / 2 + 8, 580, colW / 2 - 8, 86);
         parents.at(vw - 170, 14, 150, 70);
         for (int k = 0; k < 3; k++) bayTabs[k].at(470 + k * 160, 18, 150, 66);
     }
@@ -129,8 +133,8 @@ public final class HubScreen extends Screen {
         else if (next == null) play.label = "Track Day";
         else play.label = "Play Level " + (g.content.campaign.storyIndex(next) + 1);
         play.enabled = !closed;
-        trackDay.visible = g.progress.trackDayUnlocked() && next != null; // after the story, the big Play button is Track Day
-        trackDay.enabled = !closed;
+        levelsBtn.enabled = !closed;
+        manualBtn.enabled = true;
         blueprints.enabled = !closed;
         gears.enabled = !closed;
         int affordable = 0;
@@ -176,7 +180,9 @@ public final class HubScreen extends Screen {
             @Override public int look(String fixtureId) { return lookOf(fixtureId); }
         }, time);
         String v = vehicleFor(bay);
-        CarArt.draw(c, g.content.garage, v, g.profile.equipped.get(v), GarageArt.LIFT_X, GarageArt.LIFT_Y - (g.progress.repairDone("b" + bay + "-r2") ? 16 + (float) Math.sin(time) * 3 : 0), GarageArt.LIFT_W, 0, time);
+        int carNum = g.profile.carNumbers.containsKey(v) ? g.profile.carNumbers.get(v) : 0;
+        int carStripe = g.profile.carStripes.containsKey(v) ? g.profile.carStripes.get(v) : 0;
+        CarArt.draw(c, g.content.garage, v, g.profile.equipped.get(v), carNum, carStripe, GarageArt.LIFT_X, GarageArt.LIFT_Y - (g.progress.repairDone("b" + bay + "-r2") ? 16 + (float) Math.sin(time) * 3 : 0), GarageArt.LIFT_W, 0, time);
         // the team, peeking in at the bottom
         CharacterArt.draw(c, CharacterArt.BO, 40, 360, 200, 0, time);
         CharacterArt.draw(c, CharacterArt.SPROCKET, 210, 420, 140, 0, time + 1);

@@ -63,24 +63,50 @@ final class Ui2 {
     }
 
     /**
-     * Workshop Ledger: the money maths, shown before every purchase.
-     * Coins drawn as stacks of ten plus singles, then "Have 74 - Cost 45 = 29 left".
+     * Workshop Ledger: exact place-value coin stacks (hundreds blocks, true 10-coin stacks, singles)
+     * plus an integrated item header and "Have 74 - Cost 45 = 29 left" mental-math receipt.
      */
     static void ledger(Canvas c, int have, int cost, float l, float t, float w) {
-        Ui.panel(c, l, t, l + w, t + 250, 0xFFFFF6DC);
-        Ui.label(c, "Workshop Ledger", l + 30, t + 52, 34, Pal.INK, Paint.Align.LEFT);
-        // coin stacks: one stack per ten
-        int tens = have / 10, ones = have % 10;
-        float x = l + 40, base = t + 150;
-        for (int k = 0; k < Math.min(tens, 12); k++) {
-            for (int j = 0; j < 5; j++) Draw.rrect(c, x, base - j * 9, x + 40, base - j * 9 + 10, 5, j % 2 == 0 ? Pal.GOLD : Pal.GOLD_DARK, 2);
-            x += 46;
+        ledger(c, "Workshop Ledger", "", have, cost, l, t, w);
+    }
+
+    static void ledger(Canvas c, String itemTitle, String statNote, int have, int cost, float l, float t, float w) {
+        Ui.panel(c, l, t, l + w, t + 290, 0xFFFFF6DC);
+        Ui.label(c, itemTitle, l + 30, t + 48, 34, Pal.INK, Paint.Align.LEFT);
+        if (statNote != null && !statNote.isEmpty()) {
+            Ui.label(c, statNote, l + w - 30, t + 48, 26, Pal.TEAL, Paint.Align.RIGHT);
         }
-        for (int k = 0; k < ones; k++) { Draw.coin(c, x + 16, base - 4, 12); x += 28; }
-        Ui.label(c, tens + " tens and " + ones + " ones", l + 40, t + 190, 24, 0xFF8A8072, Paint.Align.LEFT);
+        // True place-value visualization: gold 100-bricks, exact 10-disk stacks, and single coins.
+        int hundreds = have / 100, tens = (have % 100) / 10, ones = have % 10;
+        float x = l + 36, base = t + 186;
+        int drawnH = Math.min(hundreds, 5);
+        for (int k = 0; k < drawnH; k++) {
+            Draw.brick(c, x, base - 58, x + 56, base + 8, Pal.GOLD, 2, 2.5f);
+            Ui.center(c, "100", x + 28, base - 16, 20, Pal.INK);
+            x += 64;
+        }
+        if (hundreds > drawnH) {
+            Ui.label(c, "+" + (hundreds - drawnH) + "×100", x, base - 16, 22, Pal.GOLD_DARK, Paint.Align.LEFT);
+            x += 82;
+        }
+        for (int k = 0; k < tens; k++) {
+            // Exactly 10 crisp coin disks per stack so counting matches "tens"!
+            for (int j = 0; j < 10; j++) {
+                Draw.rrect(c, x, base - j * 8, x + 36, base - j * 8 + 7, 3, j % 2 == 0 ? Pal.GOLD : Pal.GOLD_DARK, 1.5f);
+            }
+            x += 42;
+        }
+        for (int k = 0; k < ones; k++) {
+            Draw.coin(c, x + 13, base - 4, 11);
+            x += 25;
+        }
+        String place = hundreds > 0
+                ? hundreds + " hundred" + (hundreds == 1 ? "" : "s") + ", " + tens + " ten" + (tens == 1 ? "" : "s") + " and " + ones + " one" + (ones == 1 ? "" : "s")
+                : tens + " ten" + (tens == 1 ? "" : "s") + " and " + ones + " one" + (ones == 1 ? "" : "s");
+        Ui.label(c, place, l + 36, t + 224, 24, 0xFF7A7062, Paint.Align.LEFT);
         boolean ok = have >= cost;
         String eq = ok ? "Have " + have + "  −  Cost " + cost + "  =  " + (have - cost) + " left"
                 : "Have " + have + ", need " + cost + ": " + (cost - have) + " more coins";
-        Ui.label(c, eq, l + 40, t + 232, 32, ok ? Pal.INK : Pal.RED_BAD, Paint.Align.LEFT);
+        Ui.label(c, eq, l + 36, t + 268, 32, ok ? Pal.INK : Pal.RED_BAD, Paint.Align.LEFT);
     }
 }

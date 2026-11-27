@@ -18,6 +18,12 @@ public final class CarArt {
 
     public static void draw(Canvas c, GarageCatalog cat, String vehicle, Map<String, String> eq,
                             float x, float y, float w, float wheelAngle, float t) {
+        draw(c, cat, vehicle, eq, 0, 0, x, y, w, wheelAngle, t);
+    }
+
+    public static void draw(Canvas c, GarageCatalog cat, String vehicle, Map<String, String> eq,
+                            int carNumber, int stripeStyle,
+                            float x, float y, float w, float wheelAngle, float t) {
         c.save();
         c.translate(x, y);
         c.scale(w / 400f, w / 400f);
@@ -82,8 +88,33 @@ public final class CarArt {
         c.save();
         c.clipPath(clip);
         for (int k = 0; k < 12; k++) c.drawLine(30 + k * 32, bodyBottom - 130, 30 + k * 32, bodyBottom, Draw.line(Pal.darker(bodyColor, 0.85f), 2));
+        // Custom brick stripe decals
+        if (stripeStyle == 1) { // double racing stripe
+            c.drawRect(0, bodyBottom - 36, 400, bodyBottom - 26, Draw.fill(0xFFF4F1E8));
+            c.drawRect(0, bodyBottom - 22, 400, bodyBottom - 18, Draw.fill(0xFFF4F1E8));
+        } else if (stripeStyle == 2) { // checkered rally band
+            for (int k = 0; k < 25; k++) {
+                c.drawRect(k * 16, bodyBottom - 34, k * 16 + 16, bodyBottom - 24, Draw.fill(k % 2 == 0 ? 0xFFF4F1E8 : 0xFF222222));
+                c.drawRect(k * 16, bodyBottom - 24, k * 16 + 16, bodyBottom - 14, Draw.fill(k % 2 == 1 ? 0xFFF4F1E8 : 0xFF222222));
+            }
+        } else if (stripeStyle == 3) { // lightning bolt
+            Path bolt = new Path();
+            bolt.moveTo(70, bodyBottom - 26); bolt.lineTo(185, bodyBottom - 44); bolt.lineTo(175, bodyBottom - 28);
+            bolt.lineTo(310, bodyBottom - 36); bolt.lineTo(195, bodyBottom - 14); bolt.lineTo(205, bodyBottom - 26); bolt.close();
+            Draw.path(c, bolt, Pal.GOLD, 2);
+        }
         c.drawRect(0, bodyBottom - 18, 400, bodyBottom, Draw.fill(Pal.darker(bodyColor, 0.8f)));
         c.restore();
+        if (carNumber > 0) {
+            float nx = vehicle.equals("apex") ? 205 : 210, ny = bodyBottom - (vehicle.equals("trailblazer") ? 36 : 26);
+            Draw.circle(c, nx, ny, 19, 0xFFFDFBF5, 3);
+            android.graphics.Paint np = new android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG);
+            np.setColor(Pal.INK);
+            np.setTextSize(21);
+            np.setFakeBoldText(true);
+            np.setTextAlign(android.graphics.Paint.Align.CENTER);
+            c.drawText(String.valueOf(carNumber), nx, ny + 7, np);
+        }
         float roofY = vehicle.equals("comet") ? bodyBottom - 96 : vehicle.equals("trailblazer") ? bodyBottom - 118 : bodyBottom - 80;
         float roofL = vehicle.equals("comet") ? 168 : vehicle.equals("trailblazer") ? 138 : 190;
         float roofR = vehicle.equals("comet") ? 260 : vehicle.equals("trailblazer") ? 292 : 250;

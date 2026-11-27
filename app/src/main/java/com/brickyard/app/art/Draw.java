@@ -42,9 +42,20 @@ public final class Draw {
         if (outline > 0) c.drawRoundRect(R, rad, rad, line(Pal.INK, outline));
     }
 
+    private static final java.util.LinkedHashMap<Long, LinearGradient> GRAD_CACHE =
+            new java.util.LinkedHashMap<Long, LinearGradient>(32, 0.75f, true) {
+                @Override protected boolean removeEldestEntry(java.util.Map.Entry<Long, LinearGradient> e) { return size() > 64; }
+            };
+
     public static void rrectGrad(Canvas c, float l, float t, float r, float b, float rad, int top, int bottom, float outline) {
         R.set(l, t, r, b);
-        FILL.setShader(new LinearGradient(0, t, 0, b, top, bottom, Shader.TileMode.CLAMP));
+        long key = (((long) Float.floatToIntBits(t) * 31L + Float.floatToIntBits(b)) * 31L + top) * 31L + bottom;
+        LinearGradient g = GRAD_CACHE.get(key);
+        if (g == null) {
+            g = new LinearGradient(0, t, 0, b, top, bottom, Shader.TileMode.CLAMP);
+            GRAD_CACHE.put(key, g);
+        }
+        FILL.setShader(g);
         c.drawRoundRect(R, rad, rad, FILL);
         FILL.setShader(null);
         if (outline > 0) c.drawRoundRect(R, rad, rad, line(Pal.INK, outline));
@@ -60,13 +71,12 @@ public final class Draw {
         if (outline > 0) c.drawPath(p, line(Pal.INK, outline));
     }
 
-    /** A cylindrical brick stud seen from above at an angle: rim, top highlight, soft shadow. */
+    /** A cylindrical brick stud seen from above at an angle: rim, top highlight, soft shadow (zero allocations). */
     public static void stud(Canvas c, float x, float y, float rad, int color) {
         c.drawCircle(x + rad * 0.12f, y + rad * 0.18f, rad * 1.02f, fill(Pal.alpha(0xFF000000, 60)));
         c.drawCircle(x, y, rad, fill(Pal.darker(color, 0.78f)));
-        FILL.setShader(new RadialGradient(x - rad * 0.3f, y - rad * 0.35f, rad * 1.1f, Pal.lighter(color, 0.45f), color, Shader.TileMode.CLAMP));
-        c.drawCircle(x, y - rad * 0.08f, rad * 0.86f, FILL);
-        FILL.setShader(null);
+        c.drawCircle(x, y - rad * 0.08f, rad * 0.86f, fill(color));
+        c.drawCircle(x - rad * 0.22f, y - rad * 0.28f, rad * 0.36f, fill(Pal.lighter(color, 0.42f)));
         c.drawCircle(x, y - rad * 0.08f, rad * 0.86f, line(Pal.darker(color, 0.6f), rad * 0.09f));
     }
 
@@ -116,15 +126,17 @@ public final class Draw {
         return p;
     }
 
-    public static void gear(Canvas c, float x, float y, float rad, int teeth, float angle, int color, float outline) {
-        Path p = gearPath(x, y, rad, rad * 0.8f, teeth, angle);
+    public static void gear(Canvas c, float x, float y, float pitchRad, int teeth, float angle, int color, float outline) {
+        // Addendum extends past pitchRad and dedendum dips inside so meshing gears visibly interlock.
+        float toothH = Math.min(pitchRad * 0.22f, (float) (2.1 * Math.PI * pitchRad / (teeth * 2.4)));
+        Path p = gearPath(x, y, pitchRad + toothH * 0.55f, pitchRad - toothH * 0.75f, teeth, angle);
         path(c, p, color, outline);
-        circle(c, x, y, rad * 0.55f, Pal.lighter(color, 0.2f), outline * 0.8f);
-        circle(c, x, y, rad * 0.18f, Pal.INK, 0);
+        circle(c, x, y, pitchRad * 0.56f, Pal.lighter(color, 0.2f), outline * 0.8f);
+        circle(c, x, y, pitchRad * 0.18f, Pal.INK, 0);
         // spokes show rotation clearly
         for (int k = 0; k < 3; k++) {
             double a = angle + k * 2 * Math.PI / 3;
-            c.drawLine(x, y, x + (float) Math.cos(a) * rad * 0.5f, y + (float) Math.sin(a) * rad * 0.5f, line(Pal.darker(color, 0.6f), rad * 0.08f));
+            c.drawLine(x, y, x + (float) Math.cos(a) * pitchRad * 0.5f, y + (float) Math.sin(a) * pitchRad * 0.5f, line(Pal.darker(color, 0.6f), Math.max(2f, pitchRad * 0.08f)));
         }
     }
 

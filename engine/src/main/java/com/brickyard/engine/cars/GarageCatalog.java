@@ -181,6 +181,14 @@ public final class GarageCatalog {
         return out;
     }
 
+    /** All parts for a slot across every vehicle (used in Cross-Fit Brick Mix mode). */
+    public List<Part> allPartsForSlot(String slot) {
+        List<Part> out = new ArrayList<>();
+        for (Part p : parts.values())
+            if (p.slot.equals(slot)) out.add(p);
+        return out;
+    }
+
     public Part starter(String vehicle, String slot) {
         for (Part p : partsFor(vehicle, slot)) if (p.starter) return p;
         return null;

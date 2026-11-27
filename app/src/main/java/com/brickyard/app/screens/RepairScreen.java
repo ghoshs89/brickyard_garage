@@ -55,7 +55,7 @@ public final class RepairScreen extends Screen implements GameView.Overlay {
         g.say(lines, new Runnable() {
             @Override public void run() {
                 if (bayDone && bayNo < 3) { hub.bay = bayNo + 1; }
-                g.checkClosingTime();
+                g.checkClosingTime(false);
             }
         });
     }
